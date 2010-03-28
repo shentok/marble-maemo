@@ -1,0 +1,3 @@
+opt/marble/lib/lib*.so*
+opt/marble/lib/marble/plugins/lib*.so*
+opt/marble/bin/*

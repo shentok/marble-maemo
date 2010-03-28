@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Name=Marble
+Exec=/opt/marble/bin/marble.sh
+Icon=marble
+StartupWMClass=marble
+X-Window-Icon=marble
+X-HildonDesk-ShowInToolbar=true
+X-Osso-Service=org.kde.edu.marble
+X-Osso-Type=application/x-executable

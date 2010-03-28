@@ -1,0 +1,69 @@
+This package was prepared for Maemo by Dennis Nienhüser <earthwings@gentoo.org>
+on Sun, 28 Mar 2010 16:36:15 +0200. It is based on the Debian packages by
+Carsten Wolff <carsten@wolffcarsten.de> and Steffen Joeris 
+<steffen.joeris@skolelinux.de>. The license is unchanged, the original copyright
+text follows:
+
+This package was debianized by Steffen Joeris <steffen.joeris@skolelinux.de> on
+Mon, 27 Nov 2006 17:21:51 +0100.
+
+It was downloaded from
+http://www.kde-apps.org/content/show.php/Marble+-+Desktop+Globe?content=55105
+
+Upstream Author: Torsten Rahn <rahn@kde.org>
+
+
+License:
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public License, 
+version 2 as published by the Free Software Foundation.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANDABILITY of FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU Lesser General Public License for details.
+
+On Debian GNU/Linux systems, the complete text of the GNU Lesser
+General Public License can be found in /usr/share/common-licenses/LGPL.
+
+
+The Debian packaging is (C) 2006, Steffen Joeris <steffen.joeris@skolelinux.de>
+                            2008, Carsten Wolff <carsten@wolffcarsten.de>
+and is licensed under the GPL, see `/usr/share/common-licenses/GPL'.
+
+The data files for the marble package are placed under the public 
+domain. These files can be found in the source directory under data/ .
+
+The data placemarks files have the following copyright notice:
+
+
+The data in the cities.txt file consists of data that was available in
+
+http://www.world-gazetteer.com/st/popdata.zip
+
+and is now available in a more recent version at:
+
+http://www.world-gazetteer.com/dataen.zip
+
+It's reduced down to all entries which provide lat/long data and which describe
+places with > 15.000 habitants with simplified names. License from
+
+http://bevoelkerungsstatistik.de/wg.php?men=ipge#copyright
+
+Informationen zum Copyright
+alle Daten © 2005 by Stefan Helders
+Dieses Projekt soll als frei verfügbarer Datenlieferant dienen. Einige
+Anfragen veranlassen mich dazu, die Informationen zum Copyright zu
+präzisieren. Wer die Daten oder Grafiken auf seiner eigenen Website oder in
+einem Buch benutzen will, sollte nach Möglichkeit folgenden Hinweis unter den
+Daten oder im Quellennachweis verwenden:
+© by Stefan Helders www.world-gazetteer.com
+
+Translation:
+Copyright information
+all data © 2005 by Stefan Helders
+This project is meant to be a freely available data provider. Some requests
+make me specify the copyright information more precisely. If you want to use
+the data or pictures on your own website or in a book, please add a note as
+follows if possible: © by Stefan Helders www.world-gazetteer.com

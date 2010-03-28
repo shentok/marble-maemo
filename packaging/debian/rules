@@ -1,0 +1,85 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/makefile.mk
+include /usr/share/cdbs/1/rules/simple-patchsys.mk
+
+CMAKE = cmake -DCMAKE_INSTALL_PREFIX=$(CURDIR)/debian/tmp/opt/marble -DMARBLE_DATA_INSTALL_PATH=$(CURDIR)/debian/tmp/opt/marble/share/marble/data -DQTONLY=ON -DMARBLE_DATA_PATH=/opt/marble/share/marble/data -DMARBLE_PLUGIN_INSTALL_PATH=$(CURDIR)/debian/tmp/opt/marble/lib/marble/plugins -DMARBLE_PLUGIN_PATH=/opt/marble/lib/marble/plugins -DPACKAGE_ROOT_PREFIX=$(CURDIR)/debian/tmp -DCMAKE_SKIP_RPATH=ON
+
+DEB_MAKE_INSTALL_TARGET = install
+
+DEB_DH_INSTALL_SOURCEDIR = debian/tmp
+
+clean::
+	-rm -rf CMakeFiles
+	-rm -f CMakeCache.txt
+	-rm -f CPackConfig.cmake
+	-rm -f CPackSourceConfig.cmake
+	-rm -f Makefile
+	-rm -f cmake_install.cmake
+	-rm -f cmake_uninstall.cmake
+	-rm -f svnscript.cmake
+	-rm -f install_manifest.txt
+	-rm -rf data/CMakeFiles
+	-rm -f data/cmake_install.cmake
+	-rm -f data/Makefile
+	-rm -rf src/CMakeFiles
+	-rm -f src/Makefile
+	-rm -f src/config-marble.h
+	-rm -f src/cmake_install.cmake
+	-rm -rf src/lib/CMakeFiles
+	-rm -f src/lib/Makefile
+	-rm -f src/lib/config-libgps.h
+	-rm -f src/lib/cmake_install.cmake
+	-rm -rf src/tilecreator/data
+	-rm -rf src/tilecreator/tiles
+	-rm -rf src/tilecreator/CMakeFiles
+	-rm -f src/tilecreator/cmake_install.cmake
+	-rm -f src/tilecreator/Makefile
+	-rm -rf src/plugins/CMakeFiles
+	-rm -f src/plugins/Makefile
+	-rm -f src/plugins/cmake_install.cmake
+	-rm -rf src/plugins/designer/CMakeFiles
+	-rm -f src/plugins/designer/Makefile
+	-rm -f src/plugins/designer/cmake_install.cmake
+	-rm -rf src/plugins/marble/CMakeFiles
+	-rm -f src/plugins/marble/Makefile
+	-rm -f src/plugins/marble/cmake_install.cmake
+	-rm -rf src/plugins/marble/compass/CMakeFiles
+	-rm -f src/plugins/marble/compass/Makefile
+	-rm -f src/plugins/marble/compass/cmake_install.cmake
+	-rm -rf src/plugins/marble/mapscale/CMakeFiles
+	-rm -f src/plugins/marble/mapscale/Makefile
+	-rm -f src/plugins/marble/mapscale/cmake_install.cmake
+	-rm -rf src/plugins/marble/overviewmap/CMakeFiles
+	-rm -f src/plugins/marble/overviewmap/Makefile
+	-rm -f src/plugins/marble/overviewmap/cmake_install.cmake
+	-rm -rf src/plugins/marble/stars/CMakeFiles
+	-rm -f src/plugins/marble/stars/Makefile
+	-rm -f src/plugins/marble/stars/cmake_install.cmake
+	-rm -rf tests/CMakeFiles
+	-rm -f tests/Makefile
+	-rm -f tests/cmake_install.cmake
+
+common-configure-arch::
+	$(CMAKE)
+
+common-install-arch::
+	install -D -m 644 $(CURDIR)/debian/marble.lintian $(CURDIR)/debian/marble/usr/share/lintian/overrides/marble
+	install -D -m 644 $(CURDIR)/debian/marble.desktop $(CURDIR)/debian/marble/usr/share/applications/hildon/marble.desktop
+	install -D -m 644 $(CURDIR)/debian/marble.service $(CURDIR)/debian/marble/usr/share/dbus-1/services/marble.service
+	install -D -m 644 $(CURDIR)/data/icons/hi16-app-marble.png $(CURDIR)/debian/marble/usr/share/icons/hicolor/16x16/apps/marble.png
+	install -D -m 644 $(CURDIR)/data/icons/hi22-app-marble.png $(CURDIR)/debian/marble/usr/share/icons/hicolor/22x22/apps/marble.png
+	install -D -m 644 $(CURDIR)/data/icons/hi32-app-marble.png $(CURDIR)/debian/marble/usr/share/icons/hicolor/26x26/apps/marble.png
+	install -D -m 644 $(CURDIR)/data/icons/hi48-app-marble.png $(CURDIR)/debian/marble/usr/share/icons/hicolor/48x48/apps/marble.png
+	install -D -m 644 $(CURDIR)/data/icons/hi64-app-marble.png $(CURDIR)/debian/marble/usr/share/icons/hicolor/64x64/apps/marble.png
+	install -D -m 644 $(CURDIR)/data/icons/hi128-app-marble.png $(CURDIR)/debian/marble/usr/share/icons/hicolor/128x128/apps/marble.png
+	install -D -m 644 $(CURDIR)/data/icons/hisc-app-marble.svgz $(CURDIR)/debian/marble/usr/share/icons/hicolor/scalable/apps/marble.svgz
+	install -D -m 755 $(CURDIR)/debian/marble.sh $(CURDIR)/debian/marble/opt/marble/bin/marble.sh
+
+common-install-indep::
+	install -D -m 644 $(CURDIR)/debian/marble-data.lintian $(CURDIR)/debian/marble-data/usr/share/lintian/overrides/marble-data
+
+common-binary-post-install-indep::
+	rm -f $(CURDIR)/debian/marble-data/usr/share/marble/data/LICENSE.txt

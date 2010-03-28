@@ -1,0 +1,4 @@
+marble: package-name-doesnt-match-sonames libmarblewidget5
+marble: non-dev-pkg-with-shlib-symlink opt/marble/lib/libmarblewidget.so.0.5.0 opt/marble/lib/libmarblewidget.so
+marble: binary-without-manpage opt/marble/bin/geodatatest
+marble: binary-without-manpage opt/marble/bin/tilecreator
