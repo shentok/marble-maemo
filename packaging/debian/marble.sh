@@ -15,4 +15,7 @@ export XDG_DATA_HOME
 LD_LIBRARY_PATH="/opt/marble/lib:${LD_LIBRARY_PATH}"
 export LD_LIBRARY_PATH
 
+PATH="/opt/marble/bin:${PATH}"
+export PATH
+
 /opt/marble/bin/marble
