@@ -1,13 +1,14 @@
 Source: marble
-Section: user/navigation
+Section: misc
 Priority: optional
 Maintainer: Dennis Nienhüser <earthwings@gentoo.org>
 Build-Depends: debhelper (>= 4.0.0), cdbs, libqt4-dev, cmake
 Standards-Version: 3.6.0
 
 Package: marble
+Section: misc
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, marble-data
+Depends: ${shlibs:Depends}, ${misc:Depends}, marble-plugins, libmarble
 Description: Lightweight Virtual Globe and World Atlas with many features.
  Marble is meant to be a generic geographical map widget. It shows the 
  earth as a sphere but doesn't make use of any hardware acceleration 
@@ -111,215 +112,37 @@ XB-Maemo-Icon-26:
  l6IJroSMb8/norKey1GLe48TlUfx8/m8j6vr6rq6fuT1n549hzEYnwXuAAAA
  AElFTkSuQmCC
 
-Package: marble-plugins
+Package: libmarble
+Section: libs
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, marble
+Depends: ${shlibs:Depends}, ${misc:Depends}, marble-data
+Description: Shared library for Marble
+ Marble is meant to be a generic geographical map widget. It shows the 
+ earth as a sphere but doesn't make use of any hardware acceleration 
+ (NO OpenGL). Support for different maps, photos, Wikipedia articles,
+ routing and many more features are built in.
+ .
+ See the marble package for more information.
+
+Package: marble-plugins
+Section: misc
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libmarble
 Description: Plugins for Marble
  Marble is meant to be a generic geographical map widget. It shows the 
  earth as a sphere but doesn't make use of any hardware acceleration 
  (NO OpenGL). Support for different maps, photos, Wikipedia articles,
  routing and many more features are built in.
-XB-Maemo-Icon-26:
- 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
- AElFTkSuQmCC
+ .
+ See the marble package for more information.
 
 Package: marble-data
+Section: misc
 Architecture: all
 Depends: ${misc:Depends}
 Description: Additional Maps for Marble
  This package contains the architecture-independent data files for
- Marble, the generic map widget tool for KDE and others.  This includes
+ Marble, the generic map widget tool for KDE and others. This includes
  maps and flag images.
  .
  See the marble package for more information.
-XB-Maemo-Icon-26:
- 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
- AElFTkSuQmCC
