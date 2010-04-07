@@ -1,0 +1,12 @@
+files
+libmarble.postinst.debhelper
+libmarble.postrm.debhelper
+libmarble.substvars
+libmarble/
+marble-data/
+marble-plugins.substvars
+marble-plugins/
+marble.substvars
+marble/
+stamp-makefile-build
+tmp/
