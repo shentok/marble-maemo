@@ -1,3 +1,17 @@
+marble (0.10-svn+1114074-1) unstable; urgency=low
+
+  * New upstream version.
+
+ -- Dennis Nienhüser <earthwings@gentoo.org>  Mon, 12 Apr 2010 19:56:15 +0200
+
+marble (0.10-svn+1113421-1) unstable; urgency=low
+
+  * Split -data into -data and -maps. -data contains non-map data and openstreetmap
+    maps, -maps all other maps (earth and moon). -maps can be installed independently
+    by users.
+
+ -- Dennis Nienhüser <earthwings@gentoo.org>  Sat, 10 Apr 2010 22:14:25 +0200
+
 marble (0.10-svn+1112205-1) unstable; urgency=low
 
   * Further package split up. Set PATH and XDG_DATA_HOME in startup script.
