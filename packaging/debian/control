@@ -8,7 +8,7 @@ Standards-Version: 3.6.0
 Package: marble
 Section: user/navigation
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, marble-plugins, libmarble
+Depends: ${shlibs:Depends}, marble-plugins (= ${source:Version}), libmarble (= ${source:Version})
 Description: Lightweight Virtual Globe and World Atlas with many features.
  Marble is meant to be a generic geographical map widget. It shows the 
  earth as a sphere but doesn't make use of any hardware acceleration 
@@ -115,8 +115,8 @@ XB-Maemo-Icon-26:
 Package: libmarble
 Section: libs
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, marble-data
-Description: Shared library for Marble
+Depends: ${shlibs:Depends}, marble-data (>= 0.10-svn+1115436-1)
+Description: Shared library for marble
  Marble is meant to be a generic geographical map widget. It shows the 
  earth as a sphere but doesn't make use of any hardware acceleration 
  (NO OpenGL). Support for different maps, photos, Wikipedia articles,
@@ -127,8 +127,8 @@ Description: Shared library for Marble
 Package: marble-plugins
 Section: misc
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, libmarble
-Description: Plugins for Marble
+Depends: ${shlibs:Depends}, libmarble (= ${source:Version})
+Description: Plugins for marble
  Marble is meant to be a generic geographical map widget. It shows the 
  earth as a sphere but doesn't make use of any hardware acceleration 
  (NO OpenGL). Support for different maps, photos, Wikipedia articles,
@@ -139,8 +139,7 @@ Description: Plugins for Marble
 Package: marble-data
 Section: misc
 Architecture: all
-Depends: ${misc:Depends}
-Description: Additional Maps for Marble
+Description: Data needed by marble at runtime
  This package contains the architecture-independent data files for
  Marble, the generic map widget tool for KDE and others. This includes
  maps and flag images.
@@ -150,8 +149,8 @@ Description: Additional Maps for Marble
 Package: marble-maps
 Section: user/navigation
 Architecture: all
-Depends: ${shlibs:Depends}, ${misc:Depends}, marble
-Description: Maps for Marble (earth and moon)
+Depends: marble (= ${source:Version})
+Description: Additional maps for marble (earth and moon)
 XB-Maemo-Icon-26:
  iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAA3v
  AAAN7wG9nqJDAAAAB3RJTUUH1wgYBSU4oAgYFAAAAAZiS0dEAP8A/wD/oL2n
