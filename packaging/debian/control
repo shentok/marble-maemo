@@ -9,7 +9,7 @@ Package: marble
 Section: user/navigation
 Architecture: any
 Depends: ${shlibs:Depends}, marble-plugins (= ${source:Version}), libmarble (= ${source:Version})
-Description: Lightweight Virtual Globe and World Atlas with many features.
+Description: Find your way and explore the world with Marble.
  Marble is meant to be a generic geographical map widget. It shows the 
  earth as a sphere but doesn't make use of any hardware acceleration 
  (NO OpenGL). Support for different maps, photos, Wikipedia articles,
