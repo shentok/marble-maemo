@@ -1,3 +1,15 @@
+marble (0.10-svn+1159226-2) fremantle; urgency=low
+
+  * Removed unit tests from build.
+
+ -- Bastian Holst <bastianholst@gmx.de>  Sun, 08 Aug 2010 16:53:03 +0200
+
+marble (0.10-svn+1159226-1) unstable; urgency=low
+
+  * New upstream version
+
+ -- Bastian Holst <bastianholst@gmx.de>  Wed, 04 Aug 2010 21:41:28 +0200
+
 marble (0.10-svn+1115543-1) unstable; urgency=low
 
   * New upstream version (auto-select OSM on first start)
