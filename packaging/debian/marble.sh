@@ -7,7 +7,7 @@
 # $ export MARBLE_DATA_HOME=/home/user
 # which would result in cached data being written to
 # /home/user/marble/data.
-XDG_DATA_HOME="${MARBLE_DATA_HOME:-/home/user/MyDocs}"
+XDG_DATA_HOME="${MARBLE_DATA_HOME:-/home/user/MyDocs/.local/share}"
 export XDG_DATA_HOME
 
 # Marble is installed in /opt/marble. Add it's library
