@@ -1,1 +1,16 @@
-opt/marble/lib/marble/plugins/lib*.so*
+opt/marble/lib/marble/plugins/libCrosshairsPlugin.so
+opt/marble/lib/marble/plugins/libGraticulePlugin.so
+opt/marble/lib/marble/plugins/libInhibitScreensaverPlugin.so
+opt/marble/lib/marble/plugins/libLocalDatabasePlugin.so
+opt/marble/lib/marble/plugins/libMaemoPositionProviderPlugin.so
+opt/marble/lib/marble/plugins/libMapScaleFloatItem.so
+opt/marble/lib/marble/plugins/libMonavPlugin.so
+opt/marble/lib/marble/plugins/libNominatimPlugin.so
+opt/marble/lib/marble/plugins/libOpenRouteServicePlugin.so
+opt/marble/lib/marble/plugins/libOverviewMap.so
+opt/marble/lib/marble/plugins/libPositionMarker.so
+opt/marble/lib/marble/plugins/libProgressFloatItem.so
+opt/marble/lib/marble/plugins/libQNamNetworkPlugin.so
+opt/marble/lib/marble/plugins/libRoutingPlugin.so
+opt/marble/lib/marble/plugins/libStarsPlugin.so
+opt/marble/lib/marble/plugins/libYoursPlugin.so
