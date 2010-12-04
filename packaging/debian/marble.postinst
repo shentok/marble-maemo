@@ -1,0 +1,17 @@
+#!/bin/sh
+
+set -e
+
+if [ "$1" = "configure" ]
+then
+  config="/home/user/.config/kde.org/Marble Desktop Globe.conf"
+  if test -e "${config}"
+  then
+    sed -i \
+    -e 's/^sideBar=true$/sideBar=false/' \
+    -e 's/^volatileTileCacheLimit=30$/volatileTileCacheLimit=6/' \
+    "${config}"
+  fi
+fi
+
+exit 0
