@@ -2,7 +2,7 @@ Source: marble
 Section: misc
 Priority: optional
 Maintainer: Dennis Nienhüser <earthwings@gentoo.org>
-Build-Depends: debhelper (>= 4.0.0), cdbs, libqt4-dev, cmake
+Build-Depends: debhelper (>= 4.0.0), cdbs, libqt4-dev, cmake, x11proto-core-dev, libx11-dev, libqtm-systeminfo, libqtm-dev, liblocation0, liblocation-dev, libgconf2-dev, libgconf2-6, libdbus-glib-1-2, libdbus-glib-1-dev
 Standards-Version: 3.6.0
 
 Package: marble
@@ -115,7 +115,7 @@ XB-Maemo-Icon-26:
 Package: libmarble
 Section: libs
 Architecture: any
-Depends: ${shlibs:Depends}, marble-data (>= 0.10-svn+1115436-1)
+Depends: ${shlibs:Depends}, marble-data (>= 0.85)
 Description: Shared library for marble
  Marble is meant to be a generic geographical map widget. It shows the 
  earth as a sphere but doesn't make use of any hardware acceleration 
