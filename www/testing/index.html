@@ -41,8 +41,48 @@ You can install Marble conveniently from your Nokia N900 using a one-click insta
 <img src="MarbleMaemo-GuidanceModeKarlsruhe.jpg" />
 </p>
 
-<h3>Known Issues</h3>
+<h3>Changes between 1.0 Beta 1 and 1.0 Beta 2</h3>
 
+<p>
+<table border="1">
+<tr>
+  <th>Type</th>
+  <th>Description</th>
+</tr><tr>
+  <td>Bugfix</td>
+  <td>The routing dialog had to be opened at least once before it was possible to calculate a route.</td>
+</tr><tr>
+  <td>Bugfix</td>
+  <td>A route restored from the last session was only fully shown when the routing dialog was opened at least once.</td>
+</tr><tr>
+  <td>Bugfix</td>
+  <td>Mercator projection is now default with a different mapping for OSM (faster, no crash at high zoom values).</td>
+</tr><tr>
+  <td>User Interface</td>
+  <td>The vertical space in the routing dialog was too small when several via points were used or several search results turned up.</td>
+</tr><tr>
+  <td>User Interface</td>
+  <td>The progress indicator suggested a route was ready too early (when Marble was still busy)</td>
+</tr>
+</tr><tr>
+  <td>User Interface</td>
+  <td>When upgrading from Marble 0.10 (KDE 4.5), a black frame was shown on the left</td>
+</tr>
+</tr><tr>
+  <td>User Interface</td>
+  <td>When upgrading from Marble 0.10 (KDE 4.5), two info boxes were overlapping on the bottom right of the map</td>
+</tr><tr>
+  <td>User Interface</td>
+  <td>Too many icons with arrows on the bottom of the screen were confusing for first time users. Removed one, changed another.</td>
+</tr>
+</tr><tr>
+  <td>Packaging</td>
+  <td>Removed a couple of plugins that were not used, are not too useful or complicated to setup on the N900: The compass, the Gosmore and Routino offline routers (Monav is still there), a couple of online plugins.</td>
+</tr>
+</table>
+</p>
+
+<h3>Known Issues in 1.0 Beta 2</h3>
 <p>
 <table border="1">
 <tr>
@@ -51,38 +91,8 @@ You can install Marble conveniently from your Nokia N900 using a one-click insta
   <th>Status</th>
 </tr><tr>
   <td>Bug</td>
-  <td>The routing dialog has to be opened at least once before it is possible to calculate a route.</td>
-  <td>Fixed in 1.0 Beta 2</tt></td>
-</tr><tr>
-  <td>Bug</td>
-  <td>A route restored from the last session is only fully shown when the routing dialog was opened at least once.</td>
-  <td>Fixed in 1.0 Beta 2</tt></td>
-</tr><tr>
-  <td>Bug</td>
-  <td>Crash at very high zoom levels.</td>
+  <td>In Globe projection (Map View dialog, not default), Marble crashes at high zoom values.</td>
   <td>Open</tt></td>
-</tr><tr>
-  <td>User Interface</td>
-  <td>The vertical space in the routing dialog is too small when several via points are used or several search results turn up.</td>
-  <td>Fixed in 1.0 Beta 2</td>
-</tr><tr>
-  <td>User Interface</td>
-  <td>The progress indicator suggests a route is ready too early (when Marble is still busy)</td>
-  <td>Fixed in 1.0 Beta 2</td>
-</tr>
-</tr><tr>
-  <td>User Interface</td>
-  <td>When upgrading from Marble 0.10 (KDE 4.5), a black frame is shown on the left</td>
-  <td>Fixed in 1.0 Beta 2</td>
-</tr>
-</tr><tr>
-  <td>User Interface</td>
-  <td>When upgrading from Marble 0.10 (KDE 4.5), two info boxes overlap on the bottom right of the map</td>
-  <td>Fixed in 1.0 Beta 2</tt></td>
-</tr><tr>
-  <td>User Interface</td>
-  <td>Too many icons with arrows on the bottom of the screen are confusing for first time users.</td>
-  <td>Fixed in 1.0 Beta 2</tt></td>
 </tr>
 </table>
 </p>
