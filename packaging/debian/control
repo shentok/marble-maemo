@@ -115,7 +115,7 @@ XB-Maemo-Icon-26:
 Package: libmarble
 Section: libs
 Architecture: any
-Depends: ${shlibs:Depends}, marble-data (>= 0.85)
+Depends: ${shlibs:Depends}, marble-data (>= 0.85+svn1205589)
 Description: Shared library for marble
  Marble is meant to be a generic geographical map widget. It shows the 
  earth as a sphere but doesn't make use of any hardware acceleration 
