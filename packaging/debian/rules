@@ -82,6 +82,7 @@ common-install-arch::
 
 common-install-indep::
 	install -D -m 644 $(CURDIR)/debian/marble-data.lintian $(CURDIR)/debian/marble-data/usr/share/lintian/overrides/marble-data
+	mv $(CURDIR)/debian/tmp/opt/marble/share/marble/data/placemarks/cityplacemarks{_large_population,}.cache
 
 common-binary-post-install-indep::
 	rm -f $(CURDIR)/debian/marble-data/usr/share/marble/data/LICENSE.txt
