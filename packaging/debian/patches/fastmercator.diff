@@ -1,0 +1,257 @@
+Index: marble-0.85+svn1207808/src/lib/AbstractScanlineTextureMapper.cpp
+===================================================================
+--- marble-0.85+svn1207808.orig/src/lib/AbstractScanlineTextureMapper.cpp	2010-12-19 16:51:17.000000000 -0500
++++ marble-0.85+svn1207808/src/lib/AbstractScanlineTextureMapper.cpp	2010-12-19 16:51:30.000000000 -0500
+@@ -36,8 +36,8 @@
+       m_tileLoader( tileLoader ),
+       m_tilePosX( 0 ),
+       m_tilePosY( 0 ),
+-      m_textureLayer( textureLayer ),
+       m_tileSize( textureLayer->tileSize() ),  // cache tile size
++      m_textureLayer( textureLayer ),
+       m_tile( 0 ),
+       m_previousRadius( 0 ),
+       m_tileLevel( 0 ),
+Index: marble-0.85+svn1207808/src/lib/AbstractScanlineTextureMapper.h
+===================================================================
+--- marble-0.85+svn1207808.orig/src/lib/AbstractScanlineTextureMapper.h	2010-12-19 16:51:17.000000000 -0500
++++ marble-0.85+svn1207808/src/lib/AbstractScanlineTextureMapper.h	2010-12-19 16:51:30.000000000 -0500
+@@ -120,24 +120,26 @@
+     int          m_tilePosX;
+     int          m_tilePosY;
+ 
++    /// size of the tiles of of the current texture layer
++    QSize const m_tileSize;
++
++    int         m_tileLevel;
++    uint        m_mapThemeIdHash;
++
+  private:
+     Q_DISABLE_COPY( AbstractScanlineTextureMapper )
+     void initGlobalWidth();
+     void initGlobalHeight();
+ 
+     GeoSceneTexture const * const m_textureLayer;
+-    /// size of the tiles of of the current texture layer
+-    QSize const m_tileSize;
+     StackedTile *m_tile;
+     int         m_previousRadius;
+ 
+-    int         m_tileLevel;
+     int         m_maxTileLevel;
+     int         m_globalWidth;
+     int         m_globalHeight;
+     qreal       m_normGlobalWidth;
+     qreal       m_normGlobalHeight;
+-    uint        m_mapThemeIdHash;
+ };
+ 
+ inline bool AbstractScanlineTextureMapper::interlaced() const
+Index: marble-0.85+svn1207808/src/lib/CMakeLists.txt
+===================================================================
+--- marble-0.85+svn1207808.orig/src/lib/CMakeLists.txt	2010-12-19 16:51:17.000000000 -0500
++++ marble-0.85+svn1207808/src/lib/CMakeLists.txt	2010-12-19 16:51:30.000000000 -0500
+@@ -130,6 +130,7 @@
+     SphericalScanlineTextureMapper.cpp
+     EquirectScanlineTextureMapper.cpp
+     MercatorScanlineTextureMapper.cpp
++    FastMercatorTextureMapper.cpp
+     DiscCache.cpp
+     ServerLayout.cpp
+     StoragePolicy.cpp
+Index: marble-0.85+svn1207808/src/lib/FastMercatorTextureMapper.cpp
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ marble-0.85+svn1207808/src/lib/FastMercatorTextureMapper.cpp	2010-12-19 16:51:30.000000000 -0500
+@@ -0,0 +1,124 @@
++//
++// This file is part of the Marble Virtual Globe.
++//
++// This program is free software licensed under the GNU LGPL. You can
++// find a copy of this license in LICENSE.txt in the top directory of
++// the source code.
++//
++// Copyright 2010      Bernhard Beschow <bbeschow@cs.tu-berlin.de>
++//
++
++
++// local
++#include"FastMercatorTextureMapper.h"
++
++// posix
++#include <cmath>
++
++// Qt
++#include <QtCore/qmath.h>
++#include <QtGui/QImage>
++#include <QtGui/QPainter>
++
++// Marble
++#include "StackedTileLoader.h"
++#include "ViewParams.h"
++#include "TileLoaderHelper.h"
++#include "StackedTile.h"
++#include "MathHelper.h"
++
++using namespace Marble;
++
++FastMercatorTextureMapper::FastMercatorTextureMapper( GeoSceneTexture *textureLayer,
++                                                      StackedTileLoader *tileLoader,
++                                                      QObject *parent )
++    : AbstractScanlineTextureMapper( textureLayer, tileLoader, parent ),
++      m_oldYPaintedTop( 0 )
++{
++}
++
++
++void FastMercatorTextureMapper::mapTexture( ViewParams *viewParams )
++{
++    QImage       *canvasImage = viewParams->canvasImage();
++    const int imageHeight = canvasImage->height();
++    const int imageWidth  = canvasImage->width();
++    const qint64  radius      = viewParams->radius();
++
++    m_tilePosX = 65535;
++    m_tilePosY = 65535;
++    m_toTileCoordinatesLon = (qreal)(globalWidth() / 2 - m_tilePosX);
++    m_toTileCoordinatesLat = (qreal)(globalHeight() / 2 - m_tilePosY);
++
++    // Reset backend
++    m_tileLoader->resetTilehash();
++    selectTileLevel( viewParams );
++
++    // Calculate translation of center point
++    qreal centerLon, centerLat;
++
++    viewParams->centerCoordinates( centerLon, centerLat );
++
++    const qreal xNormalizedCenter = 0.5 + 0.5 * centerLon / M_PI;
++    const int numTilesX = globalWidth() / m_tileSize.width();
++    const int minTileX = qFloor( numTilesX * ( xNormalizedCenter - imageWidth/( 8.0 * radius ) ) );
++    const int maxTileX = numTilesX * ( xNormalizedCenter + imageWidth/( 8.0 * radius ) );
++
++    const qreal yNormalizedCenter = 0.5 - 0.5 * asinh( tan( centerLat ) ) / M_PI;
++    const int numTilesY = globalHeight() / m_tileSize.height();
++    const int minTileY = qMax( numTilesY * ( yNormalizedCenter - imageHeight/( 8.0 * radius ) ), 0.0 );
++    const int maxTileY = qMin( numTilesY * ( yNormalizedCenter + imageHeight/( 8.0 * radius ) ), numTilesY - 1.0 );
++
++    QPainter painter( canvasImage );
++
++    for ( int tileY = minTileY; tileY <= maxTileY; ++tileY ) {
++        for ( int tileX = minTileX; tileX <= maxTileX; ++tileX ) {
++            const int xLeft   = ( 4.0 * radius ) * ( ( tileX     ) / (qreal)numTilesX - xNormalizedCenter + imageWidth/( 8.0 * radius ) );
++            const int xRight  = ( 4.0 * radius ) * ( ( tileX + 1 ) / (qreal)numTilesX - xNormalizedCenter + imageWidth/( 8.0 * radius ) ) - 1;
++            const int yTop    = ( 4.0 * radius ) * ( ( tileY     ) / (qreal)numTilesY - yNormalizedCenter + imageHeight/( 8.0 * radius ) );
++            const int yBottom = ( 4.0 * radius ) * ( ( tileY + 1 ) / (qreal)numTilesY - yNormalizedCenter + imageHeight/( 8.0 * radius ) ) - 1;
++
++            const QRect rect = QRect( QPoint( xLeft, yTop ), QPoint( xRight, yBottom ) );
++            const TileId id = TileId( m_mapThemeIdHash, m_tileLevel, ( ( tileX % numTilesX ) + numTilesX ) % numTilesX, tileY );
++            StackedTile *const tile = m_tileLoader->loadTile( id, DownloadBrowse );
++
++            painter.drawImage( rect, *tile->resultTile() );
++        }
++    }
++
++    painter.end();
++
++    int yTop;
++    int yPaintedTop;
++    int yPaintedBottom;
++
++    // Calculate y-range the represented by the center point, yTop and
++    // what actually can be painted
++    yPaintedTop = yTop = (     - yNormalizedCenter ) * ( 4 * radius ) + imageHeight / 2;
++    yPaintedBottom    = ( 1.0 - yNormalizedCenter ) * ( 4 * radius ) + imageHeight / 2;
++
++    if (yPaintedTop < 0)                yPaintedTop = 0;
++    if (yPaintedTop > imageHeight)    yPaintedTop = imageHeight;
++    if (yPaintedBottom < 0)             yPaintedBottom = 0;
++    if (yPaintedBottom > imageHeight) yPaintedBottom = imageHeight;
++
++    // Remove unused lines
++    const int clearStart = ( yPaintedTop - m_oldYPaintedTop <= 0 ) ? yPaintedBottom : 0;
++    const int clearStop  = ( yPaintedTop - m_oldYPaintedTop <= 0 ) ? imageHeight  : yTop;
++
++    QRgb * const clearBegin = (QRgb*)( canvasImage->scanLine( clearStart ) );
++    QRgb * const clearEnd = (QRgb*)( canvasImage->scanLine( clearStop ) );
++
++    QRgb * it = clearBegin;
++
++    for ( ; it < clearEnd; ++it ) {
++        *(it) = 0;
++    }
++
++    m_oldYPaintedTop = yPaintedTop;
++
++    m_tileLoader->cleanupTilehash();
++}
++
++
++#include "FastMercatorTextureMapper.moc"
+Index: marble-0.85+svn1207808/src/lib/FastMercatorTextureMapper.h
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ marble-0.85+svn1207808/src/lib/FastMercatorTextureMapper.h	2010-12-19 16:51:30.000000000 -0500
+@@ -0,0 +1,35 @@
++//
++// This file is part of the Marble Virtual Globe.
++//
++// This program is free software licensed under the GNU LGPL. You can
++// find a copy of this license in LICENSE.txt in the top directory of
++// the source code.
++//
++// Copyright 2010      Bernhard Beschow <bbeschow@cs.tu-berlin.de>
++//
++
++#ifndef MARBLE_FASTMERCATORTEXTUREMAPPER_H
++#define MARBLE_FASTMERCATORTEXTUREMAPPER_H
++
++
++#include "AbstractScanlineTextureMapper.h"
++
++namespace Marble
++{
++
++class FastMercatorTextureMapper : public AbstractScanlineTextureMapper
++{
++    Q_OBJECT
++
++ public:
++    FastMercatorTextureMapper( GeoSceneTexture *textureLayer, StackedTileLoader *tileLoader,
++                               QObject *parent = 0 );
++    void mapTexture( ViewParams *viewParams );
++
++  private:
++    int m_oldYPaintedTop;
++};
++
++}
++
++#endif
+Index: marble-0.85+svn1207808/src/lib/TextureLayer.cpp
+===================================================================
+--- marble-0.85+svn1207808.orig/src/lib/TextureLayer.cpp	2010-12-19 16:51:17.000000000 -0500
++++ marble-0.85+svn1207808/src/lib/TextureLayer.cpp	2010-12-19 16:51:30.000000000 -0500
+@@ -18,6 +18,7 @@
+ #include "SphericalScanlineTextureMapper.h"
+ #include "EquirectScanlineTextureMapper.h"
+ #include "MercatorScanlineTextureMapper.h"
++#include "FastMercatorTextureMapper.h"
+ #include "GeoPainter.h"
+ #include "GeoSceneDocument.h"
+ #include "GeoSceneFilter.h"
+@@ -249,8 +250,13 @@
+                                                                 this );
+             break;
+         case Mercator:
+-            d->m_texmapper = new MercatorScanlineTextureMapper( d->textureLayer(), &d->m_tileLoader,
++            if ( d->textureLayer()->projection() == GeoSceneTexture::Mercator ) {
++                d->m_texmapper = new FastMercatorTextureMapper( d->textureLayer(), &d->m_tileLoader,
+                                                                 this );
++            } else {
++                d->m_texmapper = new MercatorScanlineTextureMapper( d->textureLayer(), &d->m_tileLoader,
++                                                                    this );
++            }
+             break;
+         default:
+             d->m_texmapper = 0;

@@ -1,0 +1,16 @@
+Index: marble-0.85+svn1207808/data/CMakeLists.txt
+===================================================================
+--- marble-0.85+svn1207808.orig/data/CMakeLists.txt	2010-12-19 16:56:16.000000000 -0500
++++ marble-0.85+svn1207808/data/CMakeLists.txt	2010-12-19 16:56:21.000000000 -0500
+@@ -229,6 +229,11 @@
+   ${PLACEMARK_FILES}
+ DESTINATION ${MARBLE_DATA_INSTALL_PATH}/placemarks)
+ 
++FILE (GLOB LANG_FILES lang/marble-*)
++install (FILES
++  ${LANG_FILES}
++DESTINATION ${MARBLE_DATA_INSTALL_PATH}/lang)
++
+ if(NOT APPLE AND NOT WIN32)
+   if(QTONLY)
+     set(ICON_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/../../usr/share/icons)

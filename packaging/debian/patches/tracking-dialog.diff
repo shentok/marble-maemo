@@ -1,0 +1,304 @@
+Index: marble-0.85+svn1207808/src/lib/CurrentLocationWidget.cpp
+===================================================================
+--- marble-0.85+svn1207808.orig/src/lib/CurrentLocationWidget.cpp	2010-12-19 16:53:43.000000000 -0500
++++ marble-0.85+svn1207808/src/lib/CurrentLocationWidget.cpp	2010-12-19 16:53:53.000000000 -0500
+@@ -31,6 +31,9 @@
+ // Ui
+ #include "ui_CurrentLocationWidget.h"
+ 
++#include <QDateTime>
++#include <QFileDialog>
++
+ namespace Marble
+ {
+ 
+@@ -52,6 +55,8 @@
+     void updateRecenterComboBox( int centerMode );
+     void updateAutoZoomCheckBox( bool autoZoom );
+     void updateActivePositionProvider( PositionProviderPlugin* );
++    void saveTrack();
++    void clearTrack();
+ };
+ 
+ CurrentLocationWidget::CurrentLocationWidget( QWidget *parent, Qt::WindowFlags f )
+@@ -62,11 +67,15 @@
+ 
+     d->m_locale = MarbleGlobal::getInstance()->locale();
+ 
+-    connect( d->m_currentLocationUi.recenterComboBox, SIGNAL ( highlighted( int ) ),
++    connect( d->m_currentLocationUi.recenterComboBox, SIGNAL ( currentIndexChanged( int ) ),
+             this, SLOT( setRecenterMode( int ) ) );
+ 
+     connect( d->m_currentLocationUi.autoZoomCheckBox, SIGNAL( clicked( bool ) ),
+              this, SLOT( setAutoZoom( bool ) ) );
++
++    bool const smallScreen = MarbleGlobal::getInstance()->profiles() & MarbleGlobal::SmallScreen;
++    d->m_currentLocationUi.positionTrackingComboBox->setVisible( !smallScreen );
++    d->m_currentLocationUi.locationLabel->setVisible( !smallScreen );
+ }
+ 
+ CurrentLocationWidget::~CurrentLocationWidget()
+@@ -91,6 +100,9 @@
+         QString html = "<p>No Position Tracking Plugin installed.</p>";
+         d->m_currentLocationUi.locationLabel->setText( html );
+         d->m_currentLocationUi.locationLabel->setEnabled ( true );
++        d->m_currentLocationUi.showTrackCheckBox->setEnabled( false );
++        d->m_currentLocationUi.saveTrackPushButton->setEnabled( false );
++        d->m_currentLocationUi.clearTrackPushButton->setEnabled( false );
+     }
+ 
+     //disconnect CurrentLocation Signals
+@@ -120,6 +132,7 @@
+     connect( d->m_widget->model()->positionTracking(),
+              SIGNAL( positionProviderPluginChanged( PositionProviderPlugin* ) ),
+              this, SLOT( updateActivePositionProvider( PositionProviderPlugin* ) ) );
++    d->updateActivePositionProvider( d->m_widget->model()->positionTracking()->positionProviderPlugin() );
+     connect( d->m_currentLocationUi.positionTrackingComboBox, SIGNAL( currentIndexChanged( QString ) ),
+              this, SLOT( changePositionProvider( QString ) ) );
+     connect( d->m_currentLocationUi.locationLabel, SIGNAL( linkActivated( QString ) ),
+@@ -132,6 +145,17 @@
+              this, SLOT( updateRecenterComboBox( int ) ) );
+     connect( d->m_adjustNavigation, SIGNAL( autoZoomToggled( bool ) ),
+              this, SLOT( updateAutoZoomCheckBox( bool ) ) );
++    connect (d->m_currentLocationUi.showTrackCheckBox, SIGNAL( clicked(bool) ),
++             d->m_widget->model()->positionTracking(), SLOT( setTrackVisible(bool) ));
++    connect (d->m_currentLocationUi.showTrackCheckBox, SIGNAL( clicked(bool) ),
++             d->m_widget, SLOT(repaint()));
++    if ( d->m_widget->model()->positionTracking()->trackVisible() ) {
++        d->m_currentLocationUi.showTrackCheckBox->setCheckState(Qt::Checked);
++    }
++    connect (d->m_currentLocationUi.saveTrackPushButton, SIGNAL( clicked(bool)),
++             this, SLOT(saveTrack()));
++    connect (d->m_currentLocationUi.clearTrackPushButton, SIGNAL( clicked(bool)),
++             this, SLOT(clearTrack()));
+ }
+ 
+ void CurrentLocationWidgetPrivate::adjustPositionTrackingStatus( PositionProviderStatus status )
+@@ -177,6 +201,10 @@
+         }
+     }
+     m_currentLocationUi.positionTrackingComboBox->blockSignals( false );
++    m_currentLocationUi.recenterLabel->setEnabled( plugin );
++    m_currentLocationUi.recenterComboBox->setEnabled( plugin );
++    m_currentLocationUi.autoZoomCheckBox->setEnabled( plugin );
++
+ }
+ 
+ void CurrentLocationWidget::receiveGpsCoordinates( const GeoDataCoordinates &position, qreal speed )
+@@ -222,14 +250,14 @@
+     html = html.arg( position.lonToString() ).arg( position.latToString() );
+     html = html.arg( distanceString ).arg( speedString + ' ' + unitString );
+     d->m_currentLocationUi.locationLabel->setText( html );
++    d->m_currentLocationUi.showTrackCheckBox->setEnabled( true );
++    d->m_currentLocationUi.saveTrackPushButton->setEnabled( true );
++    d->m_currentLocationUi.clearTrackPushButton->setEnabled( true );
+ }
+ 
+ void CurrentLocationWidgetPrivate::changePositionProvider( const QString &provider )
+ {
+     bool hasProvider = ( provider != QObject::tr("Disabled") );
+-    m_currentLocationUi.recenterLabel->setEnabled( hasProvider );
+-    m_currentLocationUi.recenterComboBox->setEnabled( hasProvider );
+-    m_currentLocationUi.autoZoomCheckBox->setEnabled( hasProvider );
+ 
+     if ( hasProvider ) {
+         foreach( PositionProviderPlugin* plugin, m_positionProviderPlugins ) {
+@@ -277,6 +305,23 @@
+     m_widget->centerOn(m_currentPosition, true);
+ }
+ 
++void CurrentLocationWidgetPrivate::saveTrack()
++{
++    QString fileName = QFileDialog::getSaveFileName(m_widget, QObject::tr("Save Track"), // krazy:exclude=qclasses
++                                                    QDir::homePath().append('/' + QDateTime::currentDateTime().toString("yyyy-MM-dd_hhmmss") + ".kml"),
++                            QObject::tr("KML File (*.kml)"));
++
++    m_widget->model()->positionTracking()->saveTrack( fileName );
++}
++
++void CurrentLocationWidgetPrivate::clearTrack()
++{
++    m_widget->model()->positionTracking()->clearTrack();
++    m_widget->repaint();
++    m_currentLocationUi.saveTrackPushButton->setEnabled( false );
++    m_currentLocationUi.clearTrackPushButton->setEnabled( false );
++}
++
+ }
+ 
+ #include "CurrentLocationWidget.moc"
+Index: marble-0.85+svn1207808/src/lib/CurrentLocationWidget.h
+===================================================================
+--- marble-0.85+svn1207808.orig/src/lib/CurrentLocationWidget.h	2010-12-19 16:53:43.000000000 -0500
++++ marble-0.85+svn1207808/src/lib/CurrentLocationWidget.h	2010-12-19 16:53:53.000000000 -0500
+@@ -72,6 +72,9 @@
+      Q_PRIVATE_SLOT( d, void updateAutoZoomCheckBox( bool autoZoom ) )
+ 
+      Q_PRIVATE_SLOT( d, void updateActivePositionProvider( PositionProviderPlugin* ) )
++
++     Q_PRIVATE_SLOT( d, void saveTrack() )
++     Q_PRIVATE_SLOT( d, void clearTrack() )
+ };
+ 
+ }
+Index: marble-0.85+svn1207808/src/lib/CurrentLocationWidget.ui
+===================================================================
+--- marble-0.85+svn1207808.orig/src/lib/CurrentLocationWidget.ui	2010-12-19 16:53:43.000000000 -0500
++++ marble-0.85+svn1207808/src/lib/CurrentLocationWidget.ui	2010-12-19 16:53:53.000000000 -0500
+@@ -7,7 +7,7 @@
+     <x>0</x>
+     <y>0</y>
+     <width>137</width>
+-    <height>190</height>
++    <height>237</height>
+    </rect>
+   </property>
+   <property name="windowTitle">
+@@ -40,6 +40,36 @@
+     </widget>
+    </item>
+    <item>
++    <widget class="QCheckBox" name="showTrackCheckBox">
++     <property name="enabled">
++      <bool>false</bool>
++     </property>
++     <property name="text">
++      <string>Show Track</string>
++     </property>
++    </widget>
++   </item>
++   <item>
++    <widget class="QPushButton" name="saveTrackPushButton">
++     <property name="enabled">
++      <bool>false</bool>
++     </property>
++     <property name="text">
++      <string>Save Track</string>
++     </property>
++    </widget>
++   </item>
++   <item>
++    <widget class="QPushButton" name="clearTrackPushButton">
++     <property name="enabled">
++      <bool>false</bool>
++     </property>
++     <property name="text">
++      <string>Clear Track</string>
++     </property>
++    </widget>
++   </item>
++   <item>
+     <widget class="QLabel" name="locationLabel">
+      <property name="enabled">
+       <bool>false</bool>
+@@ -65,6 +95,19 @@
+     </widget>
+    </item>
+    <item>
++    <spacer name="verticalSpacer">
++     <property name="orientation">
++      <enum>Qt::Vertical</enum>
++     </property>
++     <property name="sizeHint" stdset="0">
++      <size>
++       <width>20</width>
++       <height>20</height>
++      </size>
++     </property>
++    </spacer>
++   </item>
++   <item>
+     <widget class="QLabel" name="recenterLabel">
+      <property name="enabled">
+       <bool>false</bool>
+Index: marble-0.85+svn1207808/src/lib/PositionTracking.cpp
+===================================================================
+--- marble-0.85+svn1207808.orig/src/lib/PositionTracking.cpp	2010-12-19 16:53:43.000000000 -0500
++++ marble-0.85+svn1207808/src/lib/PositionTracking.cpp	2010-12-19 16:53:53.000000000 -0500
+@@ -16,14 +16,19 @@
+ #include "GeoDataPlacemark.h"
+ #include "GeoDataStyle.h"
+ #include "GeoDataStyleMap.h"
++#include "GeoWriter.h"
++#include "KmlElementDictionary.h"
+ #include "AbstractProjection.h"
+ #include "FileManager.h"
+ #include "MarbleMath.h"
+ #include "MarbleDebug.h"
++#include "MarbleDirs.h"
+ #include "PositionProviderPlugin.h"
+ 
+ #include "PositionTracking_p.h"
+ 
++#include <QFile>
++
+ using namespace Marble;
+ 
+ void PositionTrackingPrivate::setPosition( GeoDataCoordinates position,
+@@ -173,6 +178,26 @@
+     d->m_document->setVisible( visible );
+ }
+ 
++bool PositionTracking::saveTrack(QString& fileName)
++{
++
++    if ( !fileName.isEmpty() )
++    {
++        if ( !fileName.endsWith("kml", Qt::CaseInsensitive) )
++        {
++            fileName.append( ".kml" );
++        }
++
++        GeoWriter writer;
++        //FIXME: a better way to do this?
++        writer.setDocumentType( kml::kmlTag_nameSpace22 );
++        QFile file( fileName );
++        file.open( QIODevice::ReadWrite );
++        return writer.write(&file, *d->m_document);
++    }
++    return false;
++}
++
+ void PositionTracking::clearTrack()
+ {
+     GeoDataPlacemark *placemark = static_cast<GeoDataPlacemark*>(d->m_document->child(d->m_document->size()-1));
+Index: marble-0.85+svn1207808/src/lib/PositionTracking.h
+===================================================================
+--- marble-0.85+svn1207808.orig/src/lib/PositionTracking.h	2010-12-19 16:53:43.000000000 -0500
++++ marble-0.85+svn1207808/src/lib/PositionTracking.h	2010-12-19 16:53:53.000000000 -0500
+@@ -84,6 +84,11 @@
+     void setTrackVisible ( bool visible );
+ 
+     /**
++      * Saves the track document to file
++      */
++    bool saveTrack( QString& fileName );
++
++    /**
+       * Removes all track segments which were recorded
+       */
+     void clearTrack();
+Index: marble-0.85+svn1207808/src/QtMainWindow.h
+===================================================================
+--- marble-0.85+svn1207808.orig/src/QtMainWindow.h	2010-12-19 16:53:43.000000000 -0500
++++ marble-0.85+svn1207808/src/QtMainWindow.h	2010-12-19 16:53:53.000000000 -0500
+@@ -120,6 +120,7 @@
+     void showMapViewDialog();
+     void showLegendTab( bool enabled );
+     void showRoutingDialog();
++    void showTrackingDialog();
+ 
+  private:
+     void setupZoomButtons();
+@@ -194,9 +195,11 @@
+     QAction *m_showMapViewDialogAction;
+     QAction *m_toggleLegendTabAction;
+     QAction *m_toggleRoutingTabAction;
++    QAction *m_showTrackingDialogAction;
+ 
+     QDialog *m_mapViewDialog;
+     QDialog *m_routingDialog;
++    QDialog *m_trackingDialog;
+ 
+     RoutingWidget *m_routingWidget;
+ };
