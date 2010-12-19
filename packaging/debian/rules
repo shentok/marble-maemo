@@ -3,7 +3,6 @@
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/makefile.mk
-include /usr/share/cdbs/1/rules/simple-patchsys.mk
 
 CMAKE = cmake -DCMAKE_INSTALL_PREFIX=$(CURDIR)/debian/tmp/opt/marble -DMARBLE_DATA_INSTALL_PATH=$(CURDIR)/debian/tmp/opt/marble/share/marble/data -DQTONLY=ON -DMARBLE_DATA_PATH=/opt/marble/share/marble/data -DMARBLE_PLUGIN_INSTALL_PATH=$(CURDIR)/debian/tmp/opt/marble/lib/marble/plugins -DMARBLE_PLUGIN_PATH=/opt/marble/lib/marble/plugins -DPACKAGE_ROOT_PREFIX=$(CURDIR)/debian/tmp -DCMAKE_SKIP_RPATH=ON -DBUILD_MARBLE_TESTS=OFF -DENABLE_TESTS=FALSE -DCMAKE_BUILD_TYPE=Release
 
@@ -67,21 +66,7 @@ clean::
 common-configure-arch::
 	$(CMAKE)
 
-common-install-arch::
-	install -D -m 644 $(CURDIR)/debian/marble.lintian $(CURDIR)/debian/marble/usr/share/lintian/overrides/marble
-	install -D -m 644 $(CURDIR)/debian/marble.desktop $(CURDIR)/debian/marble/usr/share/applications/hildon/marble.desktop
-	install -D -m 644 $(CURDIR)/debian/marble.service $(CURDIR)/debian/marble/usr/share/dbus-1/services/marble.service
-	install -D -m 644 $(CURDIR)/data/icons/hi16-app-marble.png $(CURDIR)/debian/marble/usr/share/icons/hicolor/16x16/apps/marble.png
-	install -D -m 644 $(CURDIR)/data/icons/hi22-app-marble.png $(CURDIR)/debian/marble/usr/share/icons/hicolor/22x22/apps/marble.png
-	install -D -m 644 $(CURDIR)/data/icons/hi32-app-marble.png $(CURDIR)/debian/marble/usr/share/icons/hicolor/26x26/apps/marble.png
-	install -D -m 644 $(CURDIR)/data/icons/hi48-app-marble.png $(CURDIR)/debian/marble/usr/share/icons/hicolor/48x48/apps/marble.png
-	install -D -m 644 $(CURDIR)/data/icons/hi64-app-marble.png $(CURDIR)/debian/marble/usr/share/icons/hicolor/64x64/apps/marble.png
-	install -D -m 644 $(CURDIR)/data/icons/hi128-app-marble.png $(CURDIR)/debian/marble/usr/share/icons/hicolor/128x128/apps/marble.png
-	install -D -m 644 $(CURDIR)/data/icons/hisc-app-marble.svgz $(CURDIR)/debian/marble/usr/share/icons/hicolor/scalable/apps/marble.svgz
-	install -D -m 755 $(CURDIR)/debian/marble.sh $(CURDIR)/debian/marble/opt/marble/bin/marble.sh
-
 common-install-indep::
-	install -D -m 644 $(CURDIR)/debian/marble-data.lintian $(CURDIR)/debian/marble-data/usr/share/lintian/overrides/marble-data
 	mv $(CURDIR)/debian/tmp/opt/marble/share/marble/data/placemarks/cityplacemarks{_large_population,}.cache
 
 common-binary-post-install-indep::

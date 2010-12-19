@@ -1,3 +1,0 @@
-[D-BUS Service]
-Name=org.kde.edu.marble
-Exec=/opt/marble/bin/marble.sh
