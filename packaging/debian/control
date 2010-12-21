@@ -15,6 +15,7 @@ Description: Find your way and explore the world with Marble.
  earth as a sphere but doesn't make use of any hardware acceleration 
  (NO OpenGL). Support for different maps, photos, Wikipedia articles,
  routing and many more features are built in.
+XSBC-Bugtracker: https://bugs.kde.org/enter_bug.cgi?product=marble&rep_platform=Maemo%205
 XB-Maemo-Icon-26:
  iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAA3v
  AAAN7wG9nqJDAAAAB3RJTUUH1wgYBSU4oAgYFAAAAAZiS0dEAP8A/wD/oL2n
@@ -117,6 +118,7 @@ Package: libmarble
 Section: libs
 Architecture: any
 Depends: ${shlibs:Depends}, marble-data (>= 0.85+svn1206519)
+XSBC-Bugtracker: https://bugs.kde.org/enter_bug.cgi?product=marble&rep_platform=Maemo%205
 Description: Shared library for marble
  Marble is meant to be a generic geographical map widget. It shows the 
  earth as a sphere but doesn't make use of any hardware acceleration 
@@ -129,6 +131,7 @@ Package: marble-plugins
 Section: misc
 Architecture: any
 Depends: ${shlibs:Depends}, libmarble (= ${source:Version})
+XSBC-Bugtracker: https://bugs.kde.org/enter_bug.cgi?product=marble&rep_platform=Maemo%205
 Description: Plugins for marble
  Marble is meant to be a generic geographical map widget. It shows the 
  earth as a sphere but doesn't make use of any hardware acceleration 
@@ -140,6 +143,7 @@ Description: Plugins for marble
 Package: marble-data
 Section: misc
 Architecture: all
+XSBC-Bugtracker: https://bugs.kde.org/enter_bug.cgi?product=marble&rep_platform=Maemo%205
 Description: Data needed by marble at runtime
  This package contains the architecture-independent data files for
  Marble, the generic map widget tool for KDE and others. This includes
@@ -152,6 +156,7 @@ Section: user/navigation
 Architecture: all
 Depends: marble (= ${source:Version})
 Description: Additional maps for marble (earth and moon)
+XSBC-Bugtracker: https://bugs.kde.org/enter_bug.cgi?product=marble&rep_platform=Maemo%205
 XB-Maemo-Icon-26:
  iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAA3v
  AAAN7wG9nqJDAAAAB3RJTUUH1wgYBSU4oAgYFAAAAAZiS0dEAP8A/wD/oL2n
