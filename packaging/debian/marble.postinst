@@ -11,6 +11,7 @@ then
     -e 's/^sideBar=true$/sideBar=false/' \
     -e 's/^volatileTileCacheLimit=30$/volatileTileCacheLimit=6/' \
     -e 's/^projection=0$/projection=2/' \
+    -e '/^distanceUnit=/d' \
     "${config}"
     chown user:users "${config}"
   fi
