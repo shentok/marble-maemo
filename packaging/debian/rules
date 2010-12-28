@@ -4,7 +4,7 @@
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/makefile.mk
 
-CMAKE = cmake -DCMAKE_INSTALL_PREFIX=$(CURDIR)/debian/tmp/opt/marble -DMARBLE_DATA_INSTALL_PATH=$(CURDIR)/debian/tmp/opt/marble/share/marble/data -DQTONLY=ON -DMARBLE_DATA_PATH=/opt/marble/share/marble/data -DMARBLE_PLUGIN_INSTALL_PATH=$(CURDIR)/debian/tmp/opt/marble/lib/marble/plugins -DMARBLE_PLUGIN_PATH=/opt/marble/lib/marble/plugins -DPACKAGE_ROOT_PREFIX=$(CURDIR)/debian/tmp -DCMAKE_SKIP_RPATH=ON -DBUILD_MARBLE_TESTS=OFF -DENABLE_TESTS=FALSE -DCMAKE_BUILD_TYPE=Release
+CMAKE = cmake -DCMAKE_INSTALL_PREFIX=$(CURDIR)/debian/tmp/opt/marble -DMARBLE_DATA_INSTALL_PATH=$(CURDIR)/debian/tmp/opt/marble/share/marble/data -DQTONLY=ON -DMARBLE_DATA_PATH=/opt/marble/share/marble/data -DMARBLE_PLUGIN_INSTALL_PATH=$(CURDIR)/debian/tmp/opt/marble/lib/marble/plugins -DMARBLE_PLUGIN_PATH=/opt/marble/lib/marble/plugins -DPACKAGE_ROOT_PREFIX=$(CURDIR)/debian/tmp -DCMAKE_SKIP_RPATH=ON -DBUILD_MARBLE_TESTS=OFF -DENABLE_TESTS=FALSE -DCMAKE_BUILD_TYPE=Release -DBUILD_INHIBIT_SCREENSAVER_PLUGIN=TRUE
 
 DEB_MAKE_INSTALL_TARGET = install
 
