@@ -3,7 +3,7 @@ Section: misc
 Priority: optional
 Maintainer: Dennis Nienhüser <earthwings@gentoo.org>
 Build-Depends: debhelper (>= 5), cdbs, libqt4-dev, cmake, x11proto-core-dev,
- libqtm-dev, liblocation-dev, libx11-dev, libgconf2-dev, libdbus-glib-1-dev
+ liblocation-dev, libx11-dev, libgconf2-dev, libdbus-glib-1-dev
 Standards-Version: 3.9.1
 
 Package: marble
