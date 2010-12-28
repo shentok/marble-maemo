@@ -1,7 +1,7 @@
-Index: marble-0.85+svn1207808/src/lib/CurrentLocationWidget.cpp
+Index: marble-0.90+svn1209861/src/lib/CurrentLocationWidget.cpp
 ===================================================================
---- marble-0.85+svn1207808.orig/src/lib/CurrentLocationWidget.cpp	2010-12-19 17:24:16.000000000 -0500
-+++ marble-0.85+svn1207808/src/lib/CurrentLocationWidget.cpp	2010-12-19 17:24:21.000000000 -0500
+--- marble-0.90+svn1209861.orig/src/lib/CurrentLocationWidget.cpp	2010-12-28 05:57:25.000000000 -0500
++++ marble-0.90+svn1209861/src/lib/CurrentLocationWidget.cpp	2010-12-28 05:57:48.000000000 -0500
 @@ -31,6 +31,9 @@
  // Ui
  #include "ui_CurrentLocationWidget.h"
@@ -127,10 +127,10 @@ Index: marble-0.85+svn1207808/src/lib/CurrentLocationWidget.cpp
  }
  
  #include "CurrentLocationWidget.moc"
-Index: marble-0.85+svn1207808/src/lib/CurrentLocationWidget.h
+Index: marble-0.90+svn1209861/src/lib/CurrentLocationWidget.h
 ===================================================================
---- marble-0.85+svn1207808.orig/src/lib/CurrentLocationWidget.h	2010-12-19 17:24:16.000000000 -0500
-+++ marble-0.85+svn1207808/src/lib/CurrentLocationWidget.h	2010-12-19 17:24:21.000000000 -0500
+--- marble-0.90+svn1209861.orig/src/lib/CurrentLocationWidget.h	2010-12-28 05:57:25.000000000 -0500
++++ marble-0.90+svn1209861/src/lib/CurrentLocationWidget.h	2010-12-28 05:57:48.000000000 -0500
 @@ -72,6 +72,9 @@
       Q_PRIVATE_SLOT( d, void updateAutoZoomCheckBox( bool autoZoom ) )
  
@@ -141,10 +141,10 @@ Index: marble-0.85+svn1207808/src/lib/CurrentLocationWidget.h
  };
  
  }
-Index: marble-0.85+svn1207808/src/lib/CurrentLocationWidget.ui
+Index: marble-0.90+svn1209861/src/lib/CurrentLocationWidget.ui
 ===================================================================
---- marble-0.85+svn1207808.orig/src/lib/CurrentLocationWidget.ui	2010-12-19 17:24:16.000000000 -0500
-+++ marble-0.85+svn1207808/src/lib/CurrentLocationWidget.ui	2010-12-19 17:24:21.000000000 -0500
+--- marble-0.90+svn1209861.orig/src/lib/CurrentLocationWidget.ui	2010-12-28 05:57:25.000000000 -0500
++++ marble-0.90+svn1209861/src/lib/CurrentLocationWidget.ui	2010-12-28 05:57:48.000000000 -0500
 @@ -7,7 +7,7 @@
      <x>0</x>
      <y>0</y>
@@ -211,10 +211,10 @@ Index: marble-0.85+svn1207808/src/lib/CurrentLocationWidget.ui
      <widget class="QLabel" name="recenterLabel">
       <property name="enabled">
        <bool>false</bool>
-Index: marble-0.85+svn1207808/src/lib/PositionTracking.cpp
+Index: marble-0.90+svn1209861/src/lib/PositionTracking.cpp
 ===================================================================
---- marble-0.85+svn1207808.orig/src/lib/PositionTracking.cpp	2010-12-19 17:24:16.000000000 -0500
-+++ marble-0.85+svn1207808/src/lib/PositionTracking.cpp	2010-12-19 17:24:21.000000000 -0500
+--- marble-0.90+svn1209861.orig/src/lib/PositionTracking.cpp	2010-12-28 05:57:25.000000000 -0500
++++ marble-0.90+svn1209861/src/lib/PositionTracking.cpp	2010-12-28 05:57:48.000000000 -0500
 @@ -16,14 +16,19 @@
  #include "GeoDataPlacemark.h"
  #include "GeoDataStyle.h"
@@ -262,10 +262,10 @@ Index: marble-0.85+svn1207808/src/lib/PositionTracking.cpp
  void PositionTracking::clearTrack()
  {
      GeoDataPlacemark *placemark = static_cast<GeoDataPlacemark*>(d->m_document->child(d->m_document->size()-1));
-Index: marble-0.85+svn1207808/src/lib/PositionTracking.h
+Index: marble-0.90+svn1209861/src/lib/PositionTracking.h
 ===================================================================
---- marble-0.85+svn1207808.orig/src/lib/PositionTracking.h	2010-12-19 17:24:16.000000000 -0500
-+++ marble-0.85+svn1207808/src/lib/PositionTracking.h	2010-12-19 17:24:21.000000000 -0500
+--- marble-0.90+svn1209861.orig/src/lib/PositionTracking.h	2010-12-28 05:57:25.000000000 -0500
++++ marble-0.90+svn1209861/src/lib/PositionTracking.h	2010-12-28 05:57:48.000000000 -0500
 @@ -84,6 +84,11 @@
      void setTrackVisible ( bool visible );
  
@@ -278,10 +278,10 @@ Index: marble-0.85+svn1207808/src/lib/PositionTracking.h
        * Removes all track segments which were recorded
        */
      void clearTrack();
-Index: marble-0.85+svn1207808/src/QtMainWindow.h
+Index: marble-0.90+svn1209861/src/QtMainWindow.h
 ===================================================================
---- marble-0.85+svn1207808.orig/src/QtMainWindow.h	2010-12-19 17:24:16.000000000 -0500
-+++ marble-0.85+svn1207808/src/QtMainWindow.h	2010-12-19 17:24:21.000000000 -0500
+--- marble-0.90+svn1209861.orig/src/QtMainWindow.h	2010-12-28 05:57:25.000000000 -0500
++++ marble-0.90+svn1209861/src/QtMainWindow.h	2010-12-28 05:57:48.000000000 -0500
 @@ -120,6 +120,7 @@
      void showMapViewDialog();
      void showLegendTab( bool enabled );
@@ -302,10 +302,10 @@ Index: marble-0.85+svn1207808/src/QtMainWindow.h
  
      RoutingWidget *m_routingWidget;
  };
-Index: marble-0.85+svn1207808/src/QtMainWindow.cpp
+Index: marble-0.90+svn1209861/src/QtMainWindow.cpp
 ===================================================================
---- marble-0.85+svn1207808.orig/src/QtMainWindow.cpp	2010-12-19 17:24:16.000000000 -0500
-+++ marble-0.85+svn1207808/src/QtMainWindow.cpp	2010-12-19 17:24:21.000000000 -0500
+--- marble-0.90+svn1209861.orig/src/QtMainWindow.cpp	2010-12-28 05:57:25.000000000 -0500
++++ marble-0.90+svn1209861/src/QtMainWindow.cpp	2010-12-28 05:57:48.000000000 -0500
 @@ -41,6 +41,7 @@
  #include <QtNetwork/QNetworkProxy>
  
@@ -332,7 +332,7 @@ Index: marble-0.85+svn1207808/src/QtMainWindow.cpp
  
          m_controlView->marbleControl()->setNavigationTabShown( false );
          m_controlView->marbleControl()->setLegendTabShown( false );
-@@ -1266,6 +1271,28 @@
+@@ -1268,6 +1273,28 @@
      m_routingDialog->activateWindow();
  }
  
