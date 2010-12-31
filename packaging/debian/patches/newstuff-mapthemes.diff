@@ -1,0 +1,108 @@
+Index: marble-0.90+svn1210422/data/CMakeLists.txt
+===================================================================
+--- marble-0.90+svn1210422.orig/data/CMakeLists.txt	2010-12-31 06:17:07.000000000 -0500
++++ marble-0.90+svn1210422/data/CMakeLists.txt	2010-12-31 06:17:33.000000000 -0500
+@@ -128,6 +128,103 @@
+ DESTINATION ${MARBLE_DATA_INSTALL_PATH}/maps/earth/openstreetmap/0/0)
+ 
+ install (FILES
++maps/earth/osmarender/osmarender.dgml
++maps/earth/osmarender/osmarender-preview.png
++maps/earth/osmarender/legend.html
++DESTINATION ${MARBLE_DATA_INSTALL_PATH}/maps/earth/osmarender)
++
++install (FILES
++maps/earth/osmarender/legend/airportapron.png
++maps/earth/osmarender/legend/airportrunway.png
++maps/earth/osmarender/legend/allotments.png
++maps/earth/osmarender/legend/boundary.png
++maps/earth/osmarender/legend/bridge.png
++maps/earth/osmarender/legend/bridleway.png
++maps/earth/osmarender/legend/byway.png
++maps/earth/osmarender/legend/cemetery.png
++maps/earth/osmarender/legend/commercial.png
++maps/earth/osmarender/legend/cycleway.png
++maps/earth/osmarender/legend/farm.png
++maps/earth/osmarender/legend/footway.png
++maps/earth/osmarender/legend/golfcourse.png
++maps/earth/osmarender/legend/meadow.png
++maps/earth/osmarender/legend/military.png
++maps/earth/osmarender/legend/motorway.png
++maps/earth/osmarender/legend/nationalreserve.png
++maps/earth/osmarender/legend/naturereserve.png
++maps/earth/osmarender/legend/pathway.png
++maps/earth/osmarender/legend/primaryroad.png
++maps/earth/osmarender/legend/quarry.png
++maps/earth/osmarender/legend/railway.png
++maps/earth/osmarender/legend/railwaystation.png
++maps/earth/osmarender/legend/retail.png
++maps/earth/osmarender/legend/secondaryroad.png
++maps/earth/osmarender/legend/significantbuilding.png
++maps/earth/osmarender/legend/sportcentre.png
++maps/earth/osmarender/legend/sportpitch.png
++maps/earth/osmarender/legend/station.png
++maps/earth/osmarender/legend/subway.png
++maps/earth/osmarender/legend/summitpeak.png
++maps/earth/osmarender/legend/track.png
++maps/earth/osmarender/legend/tram.png
++maps/earth/osmarender/legend/trunkroad.png
++maps/earth/osmarender/legend/tunnel.png
++maps/earth/osmarender/legend/unclassifiedroad.png
++maps/earth/osmarender/legend/unsurfacedroad.png
++maps/earth/osmarender/legend/wood.png
++DESTINATION ${MARBLE_DATA_INSTALL_PATH}/maps/earth/osmarender/legend)
++
++install (FILES
++maps/earth/osmarender/0/0/0.png
++DESTINATION ${MARBLE_DATA_INSTALL_PATH}/maps/earth/osmarender/0/0)
++
++install (FILES
++maps/earth/osmarender/hills-nc/0/0/0.png
++DESTINATION ${MARBLE_DATA_INSTALL_PATH}/maps/earth/osmarender/hills-nc/0/0)
++
++install (FILES
++maps/earth/hikebikemap/hikebikemap.dgml
++maps/earth/hikebikemap/hikebikemap-preview.png
++maps/earth/hikebikemap/legend.html
++DESTINATION ${MARBLE_DATA_INSTALL_PATH}/maps/earth/hikebikemap)
++
++install (FILES
++maps/earth/hikebikemap/legend/access_no.png
++maps/earth/hikebikemap/legend/bridleway.png
++maps/earth/hikebikemap/legend/cycleway.png
++maps/earth/hikebikemap/legend/farmland.png
++maps/earth/hikebikemap/legend/footway.png
++maps/earth/hikebikemap/legend/meadow_stream.png
++maps/earth/hikebikemap/legend/motorway.png
++maps/earth/hikebikemap/legend/parking_building.png
++maps/earth/hikebikemap/legend/path.png
++maps/earth/hikebikemap/legend/power_tower_line.png
++maps/earth/hikebikemap/legend/primary.png
++maps/earth/hikebikemap/legend/rail.png
++maps/earth/hikebikemap/legend/residential.png
++maps/earth/hikebikemap/legend/secondary.png
++maps/earth/hikebikemap/legend/tertiary.png
++maps/earth/hikebikemap/legend/track1.png
++maps/earth/hikebikemap/legend/track2.png
++maps/earth/hikebikemap/legend/track3.png
++maps/earth/hikebikemap/legend/track4.png
++maps/earth/hikebikemap/legend/track5.png
++maps/earth/hikebikemap/legend/water_allotments.png
++DESTINATION ${MARBLE_DATA_INSTALL_PATH}/maps/earth/hikebikemap/legend)
++
++install (FILES
++maps/earth/hikebikemap/0/0/0.png
++DESTINATION ${MARBLE_DATA_INSTALL_PATH}/maps/earth/hikebikemap/0/0)
++
++install (FILES
++maps/earth/hikebikemap/hillshading/0/0/0.png
++DESTINATION ${MARBLE_DATA_INSTALL_PATH}/maps/earth/hikebikemap/hillshading/0/0)
++
++install (FILES
++maps/earth/hikebikemap/lighting/0/0/0.png
++DESTINATION ${MARBLE_DATA_INSTALL_PATH}/maps/earth/hikebikemap/lighting/0/0)
++
++install (FILES
+ maps/earth/temp-july/temp-july.jpg
+ maps/earth/temp-july/temp-july-preview.png
+ maps/earth/temp-july/temp-july.dgml
