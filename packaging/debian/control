@@ -154,7 +154,7 @@ Description: Data needed by marble at runtime
 Package: marble-maps
 Section: user/navigation
 Architecture: all
-Depends: marble (= ${source:Version})
+Depends: marble
 Description: Additional maps for marble (earth and moon)
 XSBC-Bugtracker: https://bugs.kde.org/enter_bug.cgi?product=marble&rep_platform=Maemo%205
 XB-Maemo-Icon-26:
