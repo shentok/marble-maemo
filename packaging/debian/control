@@ -11,10 +11,17 @@ Section: user/navigation
 Architecture: any
 Depends: ${shlibs:Depends}, marble-plugins (= ${source:Version}), libmarble (= ${source:Version})
 Description: Find your way and explore the world with Marble.
- Marble is meant to be a generic geographical map widget. It shows the 
- earth as a sphere but doesn't make use of any hardware acceleration 
- (NO OpenGL). Support for different maps, photos, Wikipedia articles,
- routing and many more features are built in.
+ Marble is a virtual globe with advanced routing capabilities. Use it as your
+ personal navigation device to guide you to any destination in the world.
+ Download maps from a variety of themes and explore the surroundings. Record
+ your trip and share it with your friends.
+ .
+ Main features:
+ - Online and offline routing
+ - GPS tracking and recording (KML format)
+ - Themable maps (OpenStreetMap, Satellite Map, many more)
+ - Support for different projections (globe, flat map, ...) and other planets
+ - Download of maps and route data for offline usage
 XSBC-Bugtracker: https://bugs.kde.org/enter_bug.cgi?product=marble&rep_platform=Maemo%205
 XB-Maemo-Icon-26:
  iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAA3v
@@ -120,12 +127,8 @@ Architecture: any
 Depends: ${shlibs:Depends}, marble-data (>= 0.85+svn1206519)
 XSBC-Bugtracker: https://bugs.kde.org/enter_bug.cgi?product=marble&rep_platform=Maemo%205
 Description: Shared library for marble
- Marble is meant to be a generic geographical map widget. It shows the 
- earth as a sphere but doesn't make use of any hardware acceleration 
- (NO OpenGL). Support for different maps, photos, Wikipedia articles,
- routing and many more features are built in.
- .
- See the marble package for more information.
+ The marble library contains the Marble widget and many more functionality
+ shared among applications embedding a Marble widget.
 
 Package: marble-plugins
 Section: misc
@@ -133,10 +136,8 @@ Architecture: any
 Depends: ${shlibs:Depends}, libmarble (= ${source:Version})
 XSBC-Bugtracker: https://bugs.kde.org/enter_bug.cgi?product=marble&rep_platform=Maemo%205
 Description: Plugins for marble
- Marble is meant to be a generic geographical map widget. It shows the 
- earth as a sphere but doesn't make use of any hardware acceleration 
- (NO OpenGL). Support for different maps, photos, Wikipedia articles,
- routing and many more features are built in.
+ Extends the marble library with several features: Info boxes like a scale bar,
+ search support, online and offline routing and more.
  .
  See the marble package for more information.
 
@@ -145,9 +146,8 @@ Section: misc
 Architecture: all
 XSBC-Bugtracker: https://bugs.kde.org/enter_bug.cgi?product=marble&rep_platform=Maemo%205
 Description: Data needed by marble at runtime
- This package contains the architecture-independent data files for
- Marble, the generic map widget tool for KDE and others. This includes
- maps and flag images.
+ This package contains the architecture independent data files for
+ libmarble. This includes the OpenStreetMap theme, flag images and more.
  .
  See the marble package for more information.
 
@@ -156,6 +156,8 @@ Section: user/navigation
 Architecture: all
 Depends: marble
 Description: Additional maps for marble (earth and moon)
+ OpenStreetMap derived map themes, educational map themes, satellite map
+ themes, themes for other planets.
 XSBC-Bugtracker: https://bugs.kde.org/enter_bug.cgi?product=marble&rep_platform=Maemo%205
 XB-Maemo-Icon-26:
  iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAA3v
