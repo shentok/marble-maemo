@@ -29,6 +29,10 @@ These are <b>development packages</b> which <b>have not been thoroughly tested</
 You can install Marble conveniently from your Nokia N900 using a one-click installer: Open this website with the browser on your N900 and <a href="http://nienhueser.de/marble/maemo/testing/testing.install">install the packages by clicking on this link</a>. If you need further instructions, please <a href="http://userbase.kde.org/Marble/Maemo/Installation">follow this tutorial</a>.
 </p>
 
+<p>
+Marble is also <a href="http://maemo.org/packages/view/marble/">available</a> in the <a href="http://wiki.maemo.org/Extras-testing">extras-testing</a> repository.
+</p>
+
 <h3>Documentation</h3>
 <p>
 <ul>
@@ -46,7 +50,7 @@ You can install Marble conveniently from your Nokia N900 using a one-click insta
 <p>
 <table border="1">
 <tr>
-  <th>Type</th>
+  <th width="120em">Type</th>
   <th>Description</th>
 </tr><tr>
   <td>Bugfix</td>
@@ -82,12 +86,12 @@ You can install Marble conveniently from your Nokia N900 using a one-click insta
 </table>
 </p>
 
-<h3>Changes between 1.0 Beta 2 and 1.0 Release Candidate 1</h3>
+<h3>Changes between 1.0 Beta 2 and 1.0 RC 1</h3>
 
 <p>
 <table border="1">
 <tr>
-  <th>Type</th>
+  <th width="120em">Type</th>
   <th>Description</th>
 </tr><tr>
   <td>User Interface</td>
@@ -98,15 +102,60 @@ You can install Marble conveniently from your Nokia N900 using a one-click insta
 </tr><tr>
   <td>Bugfix/Performance</td>
   <td>Fixed a possibly crash / slowness when using guidance mode in combination with very large routes containing very large motorway parts.</td>
+</tr><tr>
+  <td>Bugfix</td>
+  <td>When GPS is enabled and the user turns on the screensaver, do not force the screen back on periodically.</td>
+</tr><tr>
+  <td>Bugfix</td>
+  <td>Use imperial units (miles/feet) when the system is configured like that.</td>
 </tr>
 </table>
 </p>
 
-<h3>Known Issues in 1.0 Release Candidate 1</h3>
+<h3>Changes between 1.0 RC 1 and 1.0 RC 2</h3>
+
 <p>
 <table border="1">
 <tr>
-  <th>Type</th>
+  <th width="120em">Type</th>
+  <th>Description</th>
+</tr><tr>
+  <td>Feature</td>
+  <td>Add the Hike &amp; Bike Map and the Osmarender map themes to the <tt>marble-maps</tt> package.</td>
+</tr><tr>
+  <td>Packaging</td>
+  <td>Fix an upgrade problem in the <tt>marble-maps</tt> package (package manager reported a conflict).</td>
+</tr><tr>
+  <td>User Interface</td>
+  <td>Improve the look of the Map View Dialog and make it more responsive.</td>
+</tr><tr>
+  <td>User Interface</td>
+  <td>Disable the Guidance Mode button (left most of the four large buttons on the bottom) when no route has been calculated.</td>
+</tr><tr>
+  <td>User Interface</td>
+  <td>Don't show the position indicator anymore when GPS gets disabled.</td>
+</tr><tr>
+  <td>User Interface</td>
+  <td>Improve the look of the Map View Dialog and make it more responsive.</td>
+</tr><tr>
+  <td>User Interface</td>
+  <td>Update translations. Marble <i>might</i> appear in your native language now. If it does not, please ignore this for now. If it appears in your language, but some english phrases are still around here and there, please ignore this as well for now. If however a non-english phrase results in widgets becoming too large/small, please <a href="http://bugs.kde.org">report a bug</a>.</td>
+</tr><tr>
+  <td>Performance</td>
+  <td>More optimizations that double the rendering speed again (compared to Release Candidate 1).</td>
+</tr><tr>
+  <td>Bugfix</td>
+  <td>Fix a crash when using the Plain Map theme.</td>
+</tr>
+</table>
+</p>
+
+
+<h3>Known Issues in 1.0 RC 2</h3>
+<p>
+<table border="1">
+<tr>
+  <th width="120em">Type</th>
   <th>Description</th>
   <th>Status</th>
 </tr><tr>
