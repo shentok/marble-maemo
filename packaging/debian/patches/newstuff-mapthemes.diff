@@ -1,8 +1,8 @@
-Index: marble-0.90+svn1210422/data/CMakeLists.txt
+Index: marble-0.95+svn1211246/data/CMakeLists.txt
 ===================================================================
---- marble-0.90+svn1210422.orig/data/CMakeLists.txt	2010-12-31 06:17:07.000000000 -0500
-+++ marble-0.90+svn1210422/data/CMakeLists.txt	2010-12-31 06:17:33.000000000 -0500
-@@ -128,6 +128,103 @@
+--- marble-0.95+svn1211246.orig/data/CMakeLists.txt	2011-01-04 21:25:41.000000000 +0100
++++ marble-0.95+svn1211246/data/CMakeLists.txt	2011-01-04 21:27:04.000000000 +0100
+@@ -128,6 +128,99 @@
  DESTINATION ${MARBLE_DATA_INSTALL_PATH}/maps/earth/openstreetmap/0/0)
  
  install (FILES
@@ -57,8 +57,8 @@ Index: marble-0.90+svn1210422/data/CMakeLists.txt
 +DESTINATION ${MARBLE_DATA_INSTALL_PATH}/maps/earth/osmarender/0/0)
 +
 +install (FILES
-+maps/earth/osmarender/hills-nc/0/0/0.png
-+DESTINATION ${MARBLE_DATA_INSTALL_PATH}/maps/earth/osmarender/hills-nc/0/0)
++maps/earth/hillshading/0/0/0.png
++DESTINATION ${MARBLE_DATA_INSTALL_PATH}/maps/earth/hillshading/0/0)
 +
 +install (FILES
 +maps/earth/hikebikemap/hikebikemap.dgml
@@ -93,10 +93,6 @@ Index: marble-0.90+svn1210422/data/CMakeLists.txt
 +install (FILES
 +maps/earth/hikebikemap/0/0/0.png
 +DESTINATION ${MARBLE_DATA_INSTALL_PATH}/maps/earth/hikebikemap/0/0)
-+
-+install (FILES
-+maps/earth/hikebikemap/hillshading/0/0/0.png
-+DESTINATION ${MARBLE_DATA_INSTALL_PATH}/maps/earth/hikebikemap/hillshading/0/0)
 +
 +install (FILES
 +maps/earth/hikebikemap/lighting/0/0/0.png
