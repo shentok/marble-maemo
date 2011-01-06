@@ -9,7 +9,7 @@ Standards-Version: 3.9.1
 Package: marble
 Section: user/navigation
 Architecture: any
-Depends: ${shlibs:Depends}, marble-plugins (>= ${source:Version}), libmarble (>= ${source:Version})
+Depends: ${shlibs:Depends}, marble-plugins (= ${source:Version}), libmarble (= ${source:Version})
 Description: Find your way and explore the world with Marble.
  Marble is a virtual globe with advanced routing capabilities. Use it as your
  personal navigation device to guide you to any destination in the world.
@@ -133,7 +133,7 @@ Description: Shared library for marble
 Package: marble-plugins
 Section: misc
 Architecture: any
-Depends: ${shlibs:Depends}, libmarble (>= ${source:Version})
+Depends: ${shlibs:Depends}, libmarble (= ${source:Version})
 XSBC-Bugtracker: https://bugs.kde.org/enter_bug.cgi?product=marble&rep_platform=Maemo%205
 Description: Plugins for marble
  Extends the marble library with several features: Info boxes like a scale bar,
