@@ -151,7 +151,27 @@ Marble is also <a href="http://maemo.org/packages/view/marble/">available</a> in
 </p>
 
 
-<h3>Known Issues in 1.0 RC 2</h3>
+<h3>Changes between 1.0 RC 2 and 1.0</h3>
+
+<p>
+<table border="1">
+<tr>
+  <th width="120em">Type</th>
+  <th>Description</th>
+</tr><tr>
+  <td>Bugfix</td>
+  <td>Ensure that altitude information is stored in saved GPS tracks.</td>
+</tr><tr>
+  <td>Bugfix</td>
+  <td>Work around <a href="http://bugreports.qt.nokia.com/browse/QTBUG-1313">Qt Bug 1313</a>: When using different language and regional settings, the language settings must define the GUI language, not the regional settings.</td>
+</tr><tr>
+  <td>Performance</td>
+  <td>Enable caching for the routing info box. Increases render speed by about 50%.</td>
+</tr>
+</table>
+</p>
+
+<h3>Known Issues in 1.0</h3>
 <p>
 <table border="1">
 <tr>
@@ -162,6 +182,10 @@ Marble is also <a href="http://maemo.org/packages/view/marble/">available</a> in
   <td>Crash</td>
   <td>In Globe projection (Map View dialog, not default), Marble crashes at high zoom values.</td>
   <td>Open</tt></td>
+</tr><tr>
+  <td>Crash</td>
+  <td>Marble crashes when using a dummy APN (libicd-network-null)</td>
+  <td><a href="http://bugreports.qt.nokia.com/browse/QTBUG-16270">Qt Bug 16270</a></td>
 </tr><tr>
   <td>Bug</td>
   <td>Occasionally a deviation from the planned route is detected by mistake.</td>
