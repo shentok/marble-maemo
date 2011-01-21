@@ -1,0 +1,15 @@
+Index: marble-1.0.0/src/lib/AbstractScanlineTextureMapper.cpp
+===================================================================
+--- marble-1.0.0.orig/src/lib/AbstractScanlineTextureMapper.cpp	2011-01-21 19:56:08.000000000 +0100
++++ marble-1.0.0/src/lib/AbstractScanlineTextureMapper.cpp	2011-01-21 19:59:23.000000000 +0100
+@@ -231,8 +231,8 @@
+                     nextTile( posX, posY );
+                     itLon = m_prevLon + m_toTileCoordinatesLon;
+                     itLat = m_prevLat + m_toTileCoordinatesLat;
+-                    posX = itLon + itStepLon * j;
+-                    posY = itLat + itStepLat * j;
++                    posX = qMax<qreal>( 0.0, qMin<qreal>( tileWidth-1.0, itLon + itStepLon * j ) );
++                    posY = qMax<qreal>( 0.0, qMin<qreal>( tileHeight-1.0, itLat + itStepLat * j ) );
+                     oldPosX = -1;
+                 }
+ 
