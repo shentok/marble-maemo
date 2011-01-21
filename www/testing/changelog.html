@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+
+<head>
+<title>Marble - Changelog</title>
+<link rel="stylesheet" type="text/css" href="../kdeedu.css" />
+<link rel="icon" href="../favicon.ico" />
+<link rel="shortcut icon" href="../favicon.ico" />
+</head>
+
+<body>
+
+<div style="width: 600px; margin-left: auto; margin-right: auto; margin-top: 20px;">
+
+<img src="../marble-logo-72dpi.png" />
+
+<p>
+This page contains a Changelog for older versions of Marble on the N900. Old entries are on top, newer at the bottom.
+</p>
+
+<h3>Changes between 1.0 Beta 1 and 1.0 Beta 2</h3>
+
+<p>
+<table border="1">
+<tr>
+  <th width="120em">Type</th>
+  <th>Description</th>
+</tr><tr>
+  <td>Bugfix</td>
+  <td>The routing dialog had to be opened at least once before it was possible to calculate a route.</td>
+</tr><tr>
+  <td>Bugfix</td>
+  <td>A route restored from the last session was only fully shown when the routing dialog was opened at least once.</td>
+</tr><tr>
+  <td>Bugfix</td>
+  <td>Mercator projection is now default with a different mapping for OSM (faster, no crash at high zoom values).</td>
+</tr><tr>
+  <td>User Interface</td>
+  <td>The vertical space in the routing dialog was too small when several via points were used or several search results turned up.</td>
+</tr><tr>
+  <td>User Interface</td>
+  <td>The progress indicator suggested a route was ready too early (when Marble was still busy)</td>
+</tr>
+</tr><tr>
+  <td>User Interface</td>
+  <td>When upgrading from Marble 0.10 (KDE 4.5), a black frame was shown on the left</td>
+</tr>
+</tr><tr>
+  <td>User Interface</td>
+  <td>When upgrading from Marble 0.10 (KDE 4.5), two info boxes were overlapping on the bottom right of the map</td>
+</tr><tr>
+  <td>User Interface</td>
+  <td>Too many icons with arrows on the bottom of the screen were confusing for first time users. Removed one, changed another.</td>
+</tr>
+</tr><tr>
+  <td>Packaging</td>
+  <td>Removed a couple of plugins that were not used, are not too useful or complicated to setup on the N900: The compass, the Gosmore and Routino offline routers (Monav is still there), a couple of online plugins.</td>
+</tr>
+</table>
+</p>
+
+<h3>Changes between 1.0 Beta 2 and 1.0 RC 1</h3>
+
+<p>
+<table border="1">
+<tr>
+  <th width="120em">Type</th>
+  <th>Description</th>
+</tr><tr>
+  <td>User Interface</td>
+  <td>Include translations. Marble <i>might</i> appear in your native language now. If it does not, please ignore this for now. If it appears in your language, but some english phrases are still around here and there, please ignore this as well for now. If however a non-english phrase results in widgets becoming too large/small, please <a href="http://bugs.kde.org">report a bug</a>.</td>
+</tr><tr>
+  <td>Performance</td>
+  <td>Various optimizations that double the rendering speed (compared to Beta 1).</td>
+</tr><tr>
+  <td>Bugfix/Performance</td>
+  <td>Fixed a possibly crash / slowness when using guidance mode in combination with very large routes containing very large motorway parts.</td>
+</tr><tr>
+  <td>Bugfix</td>
+  <td>When GPS is enabled and the user turns on the screensaver, do not force the screen back on periodically.</td>
+</tr><tr>
+  <td>Bugfix</td>
+  <td>Use imperial units (miles/feet) when the system is configured like that.</td>
+</tr>
+</table>
+</p>
+
+<h3>Changes between 1.0 RC 1 and 1.0 RC 2</h3>
+
+<p>
+<table border="1">
+<tr>
+  <th width="120em">Type</th>
+  <th>Description</th>
+</tr><tr>
+  <td>Feature</td>
+  <td>Add the Hike &amp; Bike Map and the Osmarender map themes to the <tt>marble-maps</tt> package.</td>
+</tr><tr>
+  <td>Packaging</td>
+  <td>Fix an upgrade problem in the <tt>marble-maps</tt> package (package manager reported a conflict).</td>
+</tr><tr>
+  <td>User Interface</td>
+  <td>Improve the look of the Map View Dialog and make it more responsive.</td>
+</tr><tr>
+  <td>User Interface</td>
+  <td>Disable the Guidance Mode button (left most of the four large buttons on the bottom) when no route has been calculated.</td>
+</tr><tr>
+  <td>User Interface</td>
+  <td>Don't show the position indicator anymore when GPS gets disabled.</td>
+</tr><tr>
+  <td>User Interface</td>
+  <td>Improve the look of the Map View Dialog and make it more responsive.</td>
+</tr><tr>
+  <td>User Interface</td>
+  <td>Update translations. Marble <i>might</i> appear in your native language now. If it does not, please ignore this for now. If it appears in your language, but some english phrases are still around here and there, please ignore this as well for now. If however a non-english phrase results in widgets becoming too large/small, please <a href="http://bugs.kde.org">report a bug</a>.</td>
+</tr><tr>
+  <td>Performance</td>
+  <td>More optimizations that double the rendering speed again (compared to Release Candidate 1).</td>
+</tr><tr>
+  <td>Bugfix</td>
+  <td>Fix a crash when using the Plain Map theme.</td>
+</tr>
+</table>
+</p>
+
+<p>Maintained by the <a href="mailto:marble-devel@kde.org">Marble developers.</p>
+
+</div>
+
+</body>
+</html>
