@@ -23,6 +23,7 @@ Description: Find your way and explore the world with Marble.
  - Support for different projections (globe, flat map, ...) and other planets
  - Download of maps and route data for offline usage
 XSBC-Bugtracker: https://bugs.kde.org/enter_bug.cgi?product=marble&rep_platform=Maemo%205
+XSBC-Maemo-Display-Name: Marble - Virtual Globe
 XB-Maemo-Icon-26:
  iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAA3v
  AAAN7wG9nqJDAAAAB3RJTUUH1wgYBSU4oAgYFAAAAAZiS0dEAP8A/wD/oL2n
@@ -159,6 +160,7 @@ Description: Additional maps for marble (earth and moon)
  OpenStreetMap derived map themes, educational map themes, satellite map
  themes, themes for other planets.
 XSBC-Bugtracker: https://bugs.kde.org/enter_bug.cgi?product=marble&rep_platform=Maemo%205
+XSBC-Maemo-Display-Name: Marble Maps
 XB-Maemo-Icon-26:
  iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAA3v
  AAAN7wG9nqJDAAAAB3RJTUUH1wgYBSU4oAgYFAAAAAZiS0dEAP8A/wD/oL2n
