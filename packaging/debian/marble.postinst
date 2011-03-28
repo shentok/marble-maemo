@@ -2,19 +2,97 @@
 
 set -e
 
-if [ "$1" = "configure" ]
+if [ "$1" != "configure" ]
 then
-  config="/home/user/.config/kde.org/Marble Desktop Globe.conf"
-  if test -e "${config}"
-  then
-    sed -i \
-    -e 's/^sideBar=true$/sideBar=false/' \
-    -e 's/^volatileTileCacheLimit=30$/volatileTileCacheLimit=6/' \
-    -e 's/^projection=0$/projection=2/' \
-    -e '/^distanceUnit=/d' \
-    "${config}"
-    chown user:users "${config}"
-  fi
+  exit 0
 fi
+
+### Change old default values to new default values
+
+CONFIG_FILE="/home/user/.config/kde.org/Marble Desktop Globe.conf"
+if test -e "${CONFIG_FILE}"
+then
+  sed -i \
+  -e 's/^sideBar=true$/sideBar=false/' \
+  -e 's/^volatileTileCacheLimit=30$/volatileTileCacheLimit=6/' \
+  -e 's/^projection=0$/projection=2/' \
+  -e '/^distanceUnit=/d' \
+  -e 's/^persistentTileCacheLimit=300$/persistentTileCacheLimit=0/' \
+  "${CONFIG_FILE}"
+  chown user:users "${CONFIG_FILE}"
+fi
+
+### Migrate cached openstreetmap tiles to shared directory
+
+# The OSM tile download location in Marble 1.0.x and earlier
+OSM_DIR_10="${HOME}/MyDocs/.local/share/marble/maps/earth/openstreetmap"
+
+# The OSM tile download location in Marble 1.1 and later
+OSM_DIR_11="${HOME}/MyDocs/.maps/OpenStreetMap I"
+
+# The OSM theme .dgml file
+OSM_DGML="/opt/marble/share/marble/data/maps/earth/openstreetmap/openstreetmap.dgml"
+
+# A file used as a flag to indicate a previous migration
+MIGRATED="${OSM_DIR_10}/.migrated"
+
+# Verify we have the .dgml file and can write to it (required)
+test -w "${OSM_DGML}" || { echo "DGML file ${OSM_DGML} missing."; exit 1; }
+
+# Check whether the tiles were previously migrated. In that case there's nothing to do
+test -e "${MIGRATED}" && exit 0
+
+# Tile migration
+if test -d "${OSM_DIR_10}"
+then
+    mkdir -p "${OSM_DIR_11}"
+    # Cached tiles from an old Marble installation exist and must be migrated
+    for x in ${OSM_DIR_10}/[0-9]*
+    do
+        test -e "${x}" || continue # nullglob would be shorter, but is a bashism
+        dx="$(basename ${x})"
+        if test -e "${OSM_DIR_11}/${dx}"
+        then
+            # Tiles /x/ were downloaded both in Marble and another application
+            for y in ${x}/[0-9]*
+            do
+                test -e "${y}" || continue
+                dy="$(basename ${y})"
+                target="${OSM_DIR_11}/${dx}/${dy}/"
+                if test -e "${target}"
+                then
+                    test -e "${z}" || continue
+                    # Tiles /x/y/ were downloaded both in Marble and another application. Check each /x/y/z
+                    for z in ${y}/[0-9]*.png
+                    do
+                        fz="$(basename ${z})"
+                        echo -n "."
+                        # Overwrite the shared tile only if the Marble one is newer
+                        mv -u "${z}" "${target}"
+                        # If the shared tile was not overwritten, delete the Marble one now
+                        test -e "${z}" && rm "${z}"
+                    done
+                else
+                    # Target dir does not exist yet, so we can move it over (much quicker)
+                    mv "${y}" "${OSM_DIR_11}/${dx}"
+                fi
+            done
+        else
+            # Target does not exist yet, so we can move it over (much quicker)
+            mv "${x}" "${OSM_DIR_11}/"
+        fi
+    done
+fi
+
+# Delete now empty directories
+test -d "${OSM_DIR_10}/" && find "${OSM_DIR_10}/" -depth -type d -empty -delete
+
+# If files are left in the old directory, leave a flag to avoid running 
+# the migration again. This only happens if the user created custom files in
+# the OSM cache directory
+test -d "${OSM_DIR_10}/" && touch "${MIGRATED}"
+
+# Finally, change the download location in the .dgml file. Also needed for new installations
+sed -i "s@<sourcedir format=\"PNG\"> earth/openstreetmap </sourcedir>@<sourcedir format=\"PNG\"> ${OSM_DIR_11} </sourcedir>@" "${OSM_DGML}"
 
 exit 0
