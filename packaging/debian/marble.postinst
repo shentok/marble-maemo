@@ -25,10 +25,10 @@ fi
 ### Migrate cached openstreetmap tiles to shared directory
 
 # The OSM tile download location in Marble 1.0.x and earlier
-OSM_DIR_10="${HOME}/MyDocs/.local/share/marble/maps/earth/openstreetmap"
+OSM_DIR_10="/home/user/MyDocs/.local/share/marble/maps/earth/openstreetmap"
 
 # The OSM tile download location in Marble 1.1 and later
-OSM_DIR_11="${HOME}/MyDocs/.maps/OpenStreetMap I"
+OSM_DIR_11="/home/user/MyDocs/.maps/OpenStreetMap I"
 
 # The OSM theme .dgml file
 OSM_DGML="/opt/marble/share/marble/data/maps/earth/openstreetmap/openstreetmap.dgml"
@@ -37,19 +37,31 @@ OSM_DGML="/opt/marble/share/marble/data/maps/earth/openstreetmap/openstreetmap.d
 MIGRATED="${OSM_DIR_10}/.migrated"
 
 # Verify we have the .dgml file and can write to it (required)
-test -w "${OSM_DGML}" || { echo "DGML file ${OSM_DGML} missing."; exit 1; }
+test -w "${OSM_DGML}" || { echo "DGML file ${OSM_DGML} not existant/writable."; exit 1; }
 
 # Check whether the tiles were previously migrated. In that case there's nothing to do
 test -e "${MIGRATED}" && exit 0
 
+# If the migration has to move files, ask the user to skip it since it can
+# take some minutes to finish
+confirmation="Marble can share OpenStreetMap data with other applications on this device. This helps to save disk space and reduce network traffic.
+
+Press 'Accept' to enable sharing and migrate already downloaded OpenStreetMap data. This can take several minutes. Alternatively you can skip this step now and data sharing will be disabled. You'll be prompted again to enable it during the next Marble version upgrade."
+
+#test -e "${OSM_DIR_10}" && test -e "${OSM_DIR_11}" && { echo "${confirmation}" | maemo-confirm-text "Enable OpenStreetMap Data Sharing" /dev/stdin || exit 0; }
+#message="$(mktemp marbleXXXXXX)"
+#echo "${confirmation}" > "${message}"
+#maemo-confirm-text "Enable OpenStreetMap Data Sharing" "${message}"
+#rm "${message}"
+
 # Tile migration
+mkdir -p "${OSM_DIR_11}"
 if test -d "${OSM_DIR_10}"
 then
-    mkdir -p "${OSM_DIR_11}"
     # Cached tiles from an old Marble installation exist and must be migrated
     for x in ${OSM_DIR_10}/[0-9]*
     do
-        test -e "${x}" || continue # nullglob would be shorter, but is a bashism
+        test -e "${x}" || continue
         dx="$(basename ${x})"
         if test -e "${OSM_DIR_11}/${dx}"
         then
@@ -61,22 +73,15 @@ then
                 target="${OSM_DIR_11}/${dx}/${dy}/"
                 if test -e "${target}"
                 then
-                    test -e "${z}" || continue
-                    # Tiles /x/y/ were downloaded both in Marble and another application. Check each /x/y/z
-                    for z in ${y}/[0-9]*.png
-                    do
-                        fz="$(basename ${z})"
-                        echo -n "."
-                        # Overwrite the shared tile only if the Marble one is newer
-                        mv -u "${z}" "${target}"
-                        # If the shared tile was not overwritten, delete the Marble one now
-                        test -e "${z}" && rm "${z}"
-                    done
+                    # Tiles /x/y/ were downloaded both in Marble and another application. Move each /x/y/z
+                    mv "${y}"/[0-9]*.png "${target}"
+                    rmdir "${y}" || true
                 else
                     # Target dir does not exist yet, so we can move it over (much quicker)
                     mv "${y}" "${OSM_DIR_11}/${dx}"
                 fi
             done
+            rmdir "${x}" || true
         else
             # Target does not exist yet, so we can move it over (much quicker)
             mv "${x}" "${OSM_DIR_11}/"
@@ -84,8 +89,8 @@ then
     done
 fi
 
-# Delete now empty directories
-test -d "${OSM_DIR_10}/" && find "${OSM_DIR_10}/" -depth -type d -empty -delete
+# Delete now empty directory
+test -d "${OSM_DIR_10}/" && rmdir "${OSM_DIR_10}/" || true
 
 # If files are left in the old directory, leave a flag to avoid running 
 # the migration again. This only happens if the user created custom files in
