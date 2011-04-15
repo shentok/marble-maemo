@@ -44,15 +44,8 @@ test -e "${MIGRATED}" && exit 0
 
 # If the migration has to move files, ask the user to skip it since it can
 # take some minutes to finish
-confirmation="Marble can share OpenStreetMap data with other applications on this device. This helps to save disk space and reduce network traffic.
 
-Press 'Accept' to enable sharing and migrate already downloaded OpenStreetMap data. This can take several minutes. Alternatively you can skip this step now and data sharing will be disabled. You'll be prompted again to enable it during the next Marble version upgrade."
-
-#test -e "${OSM_DIR_10}" && test -e "${OSM_DIR_11}" && { echo "${confirmation}" | maemo-confirm-text "Enable OpenStreetMap Data Sharing" /dev/stdin || exit 0; }
-#message="$(mktemp marbleXXXXXX)"
-#echo "${confirmation}" > "${message}"
-#maemo-confirm-text "Enable OpenStreetMap Data Sharing" "${message}"
-#rm "${message}"
+test -e "${OSM_DIR_10}" && test -e "${OSM_DIR_11}" && { maemo-confirm-text "Enable OpenStreetMap Data Sharing" /opt/marble/share/marble/data/migration-warning.txt || exit 0; }
 
 # Tile migration
 mkdir -p "${OSM_DIR_11}"
