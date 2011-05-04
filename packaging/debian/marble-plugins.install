@@ -1,6 +1,7 @@
 opt/marble/lib/marble/plugins/libCrosshairsPlugin.so
 opt/marble/lib/marble/plugins/libGraticulePlugin.so
 opt/marble/lib/marble/plugins/libInhibitScreensaverPlugin.so
+opt/marble/lib/marble/plugins/libLocalOsmSearchPlugin.so
 opt/marble/lib/marble/plugins/libLocalDatabasePlugin.so
 opt/marble/lib/marble/plugins/libMaemoPositionProviderPlugin.so
 opt/marble/lib/marble/plugins/libMapScaleFloatItem.so
