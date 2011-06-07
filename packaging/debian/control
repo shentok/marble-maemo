@@ -24,9 +24,6 @@ Description: Find your way and explore the world with Marble.
  - Download of maps and route data for offline usage
 XSBC-Bugtracker: https://bugs.kde.org/enter_bug.cgi?product=marble&rep_platform=Maemo%205
 XSBC-Maemo-Display-Name: Marble - Virtual Globe
-XB-Maemo-Upgrade-Description: User interface improvements (stackable windows,
- configuration of info boxes and more). OpenStreetMap data sharing with other
- applications. Support for voice navigation (technical preview).
 XB-Maemo-Icon-26:
  iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAA3v
  AAAN7wG9nqJDAAAAB3RJTUUH1wgYBSU4oAgYFAAAAAZiS0dEAP8A/wD/oL2n
@@ -137,7 +134,7 @@ Description: Shared library for marble
 Package: marble-plugins
 Section: misc
 Architecture: any
-Depends: ${shlibs:Depends}, libmarble (= ${source:Version})
+Depends: ${shlibs:Depends}, libmarble (= ${source:Version}), ogg-support, decoders-support
 XSBC-Bugtracker: https://bugs.kde.org/enter_bug.cgi?product=marble&rep_platform=Maemo%205
 Description: Plugins for marble
  Extends the marble library with several features: Info boxes like a scale bar,
