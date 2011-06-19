@@ -4,9 +4,34 @@
 
 <head>
 <title>Marble</title>
+<script src="scripts/mootools-1.2.1-core-yc.js" type="text/javascript"></script>
+<script src="scripts/mootools-1.2-more.js" type="text/javascript"></script>
+<script src="scripts/jd.gallery.js" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="kdeedu.css" />
 <link rel="icon" href="favicon.ico" />
 <link rel="shortcut icon" href="favicon.ico" />
+<link rel="stylesheet" href="css/jd.gallery.css" type="text/css" media="screen" />
+
+<script type="text/javascript">
+function startGallery() {
+var myGallery = new gallery($('myGallery'), {
+timed: true, embedLinks: false
+});
+}
+window.addEvent('domready', startGallery);
+</script>
+
+<style type="text/css">
+#myGallery {
+  width: 800px !important;
+  height: 480px !important;
+}
+
+div.spacer {
+  height: 50px;
+}
+</style>
+
 </head>
 
 <body>
@@ -19,6 +44,82 @@
 Marble is a Virtual Globe and World Atlas. It is part of the KDE Software Compilation and distributed under the terms of the LGPL, Version 2. Please visit the <a href="http://edu.kde.org/marble/">official Marble website</a> for further information.
 </p>
 
+<div id="myGallery">
+
+<div class="imageElement">
+<h3>Find your Way</h3>
+<p>Several backends for online and offline routing are available.</p>
+<a href="ds/images/screenshot107.png" title="open image" class="open"></a>
+<img src="ds/images/screenshot107.png" class="full" />
+<img src="ds/images/screenshot107.png" class="thumbnail" />
+</div>
+
+<div class="imageElement">
+<h3>Explore the World</h3>
+<p>Customize your view of the world with different map themes and projections.</p>
+<a href="images/screenshot118.png" title="open image" class="open"></a>
+<img src="images/screenshot118.png" class="full" />
+<img src="images/screenshot118.png" class="thumbnail" />
+</div>
+
+<div class="imageElement">
+<h3>Turn Instructions</h3>
+<p>Turn instructions describe each turn point of the route.</p>
+<a href="ds/images/screenshot114.png" title="open image" class="open"></a>
+<img src="ds/images/screenshot114.png" class="full" />
+<img src="ds/images/screenshot114.png" class="thumbnail" />
+</div>
+
+<div class="imageElement">
+<h3>Guidance Mode</h3>
+<p>Have Marble announce turn points during your journey -- on the screen and by voice guidance.</p>
+<a href="images/Marble-Maemo-Offline-Routing.png" title="open image" class="open"></a>
+<img src="images/Marble-Maemo-Offline-Routing.png" class="full" />
+<img src="images/Marble-Maemo-Offline-Routing.png" class="thumbnail" />
+</div>
+
+<div class="imageElement">
+<h3>Bookmarks</h3>
+<p>Access your favorite places quickly using bookmarks.</p>
+<a href="ds/images/screenshot115.png" title="open image" class="open"></a>
+<img src="ds/images/screenshot115.png" class="full" />
+<img src="ds/images/screenshot115.png" class="thumbnail" />
+</div>
+
+<div class="imageElement">
+<h3>Address Search</h3>
+<p>Search for any address, online (Marble 1.1) or offline (Marble 1.2).</p>
+<a href="ds/images/screenshot112.png" title="open image" class="open"></a>
+<img src="ds/images/screenshot112.png" class="full" />
+<img src="ds/images/screenshot112.png" class="thumbnail" />
+</div>
+
+<div class="imageElement">
+<h3>Offline POI Search</h3>
+<p>(Marble 1.2) List all points of interest for a certain category. Turn on the GPS to have the nearby ones appear on top.</p>
+<a href="images/screenshot120.png" title="open image" class="open"></a>
+<img src="images/screenshot120.png" class="full" />
+<img src="images/screenshot120.png" class="thumbnail" />
+</div>
+
+<div class="imageElement">
+<h3>Offline Fuzzy Search</h3>
+<p>(Marble 1.2) Not sure about the exact name? Use fuzzy searches (case insensitive, '*' as wildcard).</p>
+<a href="ds/images/screenshot111.png" title="open image" class="open"></a>
+<img src="ds/images/screenshot111.png" class="full" />
+<img src="ds/images/screenshot111.png" class="thumbnail" />
+</div>
+
+<div class="imageElement">
+<h3>Download Map Themes</h3>
+<p>Parts of the map can be downloaded for offline viewing.</p>
+<a href="images/screenshot119.png" title="open image" class="open"></a>
+<img src="images/screenshot119.png" class="full" />
+<img src="images/screenshot119.png" class="thumbnail" />
+</div>
+
+</div>
+
 <h3>Marble on Maemo</h3>
 
 <p>
@@ -30,6 +131,10 @@ Marble is a Virtual Globe with advanced routing capabilities. Use it as your per
 </p>
 
 <p>
+<a href="http://maemo.org/downloads/product/Maemo5/marble/">
+<img src="Download.png" width="113" height="144" align="left" class="bordered" />
+</a>
+
 Main features:
 <ul>
 <li>Online and offline routing</li>
@@ -38,11 +143,6 @@ Main features:
 <li>Support for different projections (globe, flat map, ...) and other planets</li>
 <li>Download of maps and route data for offline usage</li>
 </ul>
-
-<a href="http://maemo.org/downloads/product/Maemo5/marble/">
-<img src="Download.png" width="118" height="309" />
-<img src="Screenshots_small.png" width="672" height="309" />
-</a>
 
 <h3>External Links</h3>
 
@@ -74,29 +174,11 @@ Main features:
   <td>The stable version Marble 1.0.0 has been released and can be installed directly from the Maemo extras repository. Compared to RC 2, some bugs have been fixed and (once again) the rendering speed has been improved.
 <br />The packages <tt>marble-maps</tt> (additional map themes) and <tt>monav-routing-daemon</tt> (offline routing backend) are in extras-testing and will be available in extras soon as well.</td>
 </tr>
-<tr>
-  <td>2011-01-05</td>
-  <td>Packages for 1.0 Release Candidate 2 are available for testers. Compared to RC 1, some minor bugs are fixed and rendering speed is increased once again.</td>
-</tr>
-<tr>
-  <td>2010-12-22</td>
-  <td>Packages for 1.0 Release Candidate 1 are available for testers. Compared to Beta 2, some minor bugs are fixed and the user interface is further improved. The rendering speed is increased again.</td>
-</tr>
-<tr>
-  <td>2010-12-08</td>
-  <td>Packages for 1.0 Beta 2 are available for testers. Compared to Beta 1, some minor bugs are fixed and the user interface is further improved. The rendering speed is increased by 50%.</td>
-</tr>
-<tr>
-  <td>2010-11-24</td>
-  <td>Packages for Marble 1.0 Beta 1 are available for testers.</td>
-</tr>
-<tr>
-  <td>2010-11-03</td>
-  <td>The stable version <a href="http://edu.kde.org/marble/downloads/maemo/fremantle/stable/stable.install">Marble 0.10.3</a> has been released.</td>
-</tr>
 </table>
 </p>
 
+<div class="spacer"></div>
+<hr />
 <p>Maintained by the <a href="mailto:marble-devel@kde.org">Marble developers.</p>
 
 </div>

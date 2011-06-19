@@ -148,6 +148,11 @@ hr {
 img {
     border: 0;
 }
+
+img.bordered {
+    margin-right: 30px;
+}
+
 table {
     border-collapse: collapse;
     font-size: 1em;
