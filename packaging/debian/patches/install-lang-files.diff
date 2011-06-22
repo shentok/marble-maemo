@@ -1,10 +1,10 @@
-Index: marble-0.85+svn1207808/data/CMakeLists.txt
+Index: marble-1.1.90/data/CMakeLists.txt
 ===================================================================
---- marble-0.85+svn1207808.orig/data/CMakeLists.txt	2010-12-19 16:56:16.000000000 -0500
-+++ marble-0.85+svn1207808/data/CMakeLists.txt	2010-12-19 16:56:21.000000000 -0500
-@@ -229,6 +229,11 @@
-   ${PLACEMARK_FILES}
- DESTINATION ${MARBLE_DATA_INSTALL_PATH}/placemarks)
+--- marble-1.1.90.orig/data/CMakeLists.txt	2011-06-22 18:49:32.000000000 +0200
++++ marble-1.1.90/data/CMakeLists.txt	2011-06-22 18:49:49.000000000 +0200
+@@ -247,6 +247,11 @@
+     install (FILES placemarks/cityplacemarks.cache DESTINATION ${MARBLE_DATA_INSTALL_PATH}/placemarks)
+ endif(MOBILE)
  
 +FILE (GLOB LANG_FILES lang/marble-*)
 +install (FILES
