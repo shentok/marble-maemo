@@ -1,0 +1,11 @@
+Index: src-fremantle/data/CMakeLists.txt
+===================================================================
+--- src-fremantle.orig/data/CMakeLists.txt	2011-12-04 16:06:13.000000000 +0100
++++ src-fremantle/data/CMakeLists.txt	2011-12-04 16:06:37.000000000 +0100
+@@ -367,5 +367,6 @@
+ install (FILES
+   ${AUDIO_FILES}
+ DESTINATION ${MARBLE_DATA_INSTALL_PATH}/audio)
++install (DIRECTORY audio/speakers DESTINATION ${MARBLE_DATA_INSTALL_PATH}/audio)
+ 
+ install (FILES migration-warning.txt DESTINATION ${MARBLE_DATA_INSTALL_PATH}/)
