@@ -4,6 +4,7 @@ Priority: optional
 Maintainer: Dennis Nienhüser <earthwings@gentoo.org>
 Build-Depends: debhelper (>= 5), cdbs, libqt4-dev, cmake, x11proto-core-dev,
  liblocation-dev, libx11-dev, libgconf2-dev, libdbus-glib-1-dev
+Conflicts: monav-routing-daemon (= 0.3.release-3+hg5585bb4a8d77)
 Standards-Version: 3.9.1
 
 Package: marble
