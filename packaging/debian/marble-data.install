@@ -18,3 +18,5 @@ opt/marble/share/marble/data/svg
 opt/marble/share/marble/data/tempcolors.leg
 opt/marble/share/marble/data/weather
 opt/marble/share/marble/data/maps/earth/openstreetmap
+opt/marble/share/marble/data/maps/earth/srtm2
+
