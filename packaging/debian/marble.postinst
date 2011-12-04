@@ -30,8 +30,11 @@ OSM_DIR_10="/home/user/MyDocs/.local/share/marble/maps/earth/openstreetmap"
 # The OSM tile download location in Marble 1.1 and later
 OSM_DIR_11="/home/user/MyDocs/.maps/OpenStreetMap I"
 
+# The OSM base path
+OSM_DIR_BASE="/opt/marble/share/marble/data/maps/earth/openstreetmap"
+
 # The OSM theme .dgml file
-OSM_DGML="/opt/marble/share/marble/data/maps/earth/openstreetmap/openstreetmap.dgml"
+OSM_DGML="${OSM_DIR_BASE}/openstreetmap.dgml"
 
 # A file used as a flag to indicate a previous migration
 MIGRATED="${OSM_DIR_10}/.migrated"
@@ -92,5 +95,9 @@ test -d "${OSM_DIR_10}/" && touch "${MIGRATED}"
 
 # Finally, change the download location in the .dgml file. Also needed for new installations
 sed -i "s@<sourcedir format=\"PNG\"> earth/openstreetmap </sourcedir>@<sourcedir format=\"PNG\"> ${OSM_DIR_11} </sourcedir>@" "${OSM_DGML}"
+
+# Copy the base tile to the right place.
+mkdir -p "${OSM_DIR_11}/0/0"
+cp "${OSM_DIR_BASE}/0/0/0.png" "${OSM_DIR_11}/0/0/"
 
 exit 0
