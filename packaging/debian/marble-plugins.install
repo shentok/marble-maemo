@@ -1,5 +1,5 @@
 opt/marble/lib/marble/plugins/libCrosshairsPlugin.so
-opt/marble/lib/marble/plugins/libElevationProfileFloatItem.so
+#opt/marble/lib/marble/plugins/libElevationProfileFloatItem.so
 opt/marble/lib/marble/plugins/libGraticulePlugin.so
 opt/marble/lib/marble/plugins/libGpsInfo.so
 opt/marble/lib/marble/plugins/libGpxPlugin.so
