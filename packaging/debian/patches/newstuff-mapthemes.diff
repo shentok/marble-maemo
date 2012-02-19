@@ -1,8 +1,8 @@
-Index: marble-1.1.90/data/CMakeLists.txt
+Index: src-fremantle/data/CMakeLists.txt
 ===================================================================
---- marble-1.1.90.orig/data/CMakeLists.txt	2011-06-22 18:49:49.000000000 +0200
-+++ marble-1.1.90/data/CMakeLists.txt	2011-06-22 18:50:52.000000000 +0200
-@@ -136,6 +136,95 @@
+--- src-fremantle.orig/data/CMakeLists.txt	2012-02-19 11:51:05.000000000 +0100
++++ src-fremantle/data/CMakeLists.txt	2012-02-19 11:55:20.000000000 +0100
+@@ -145,6 +145,113 @@
  DESTINATION ${MARBLE_DATA_INSTALL_PATH}/maps/earth/hillshading/0/0)
  
  install (FILES
@@ -55,6 +55,24 @@ Index: marble-1.1.90/data/CMakeLists.txt
 +install (FILES
 +maps/earth/osmarender/0/0/0.png
 +DESTINATION ${MARBLE_DATA_INSTALL_PATH}/maps/earth/osmarender/0/0)
++
++install (FILES
++maps/earth/public-transport/public-transport.png
++maps/earth/public-transport/legend.html
++maps/earth/public-transport/public-transport.dgml
++DESTINATION ${MARBLE_DATA_INSTALL_PATH}/maps/earth/public-transport)
++
++install (FILES
++maps/earth/public-transport/legend/train_station.png
++maps/earth/public-transport/legend/subway_station.png
++maps/earth/public-transport/legend/light_rail_station.png
++maps/earth/public-transport/legend/bus_stop.png
++maps/earth/public-transport/legend/tram_station.png
++DESTINATION ${MARBLE_DATA_INSTALL_PATH}/maps/earth/public-transport/legend)
++
++install (FILES
++maps/earth/public-transport/0/0/0.png
++DESTINATION ${MARBLE_DATA_INSTALL_PATH}/maps/earth/public-transport/0/0)
 +
 +install (FILES
 +maps/earth/hikebikemap/hikebikemap.dgml
