@@ -1,15 +1,16 @@
 Index: src-fremantle/src/lib/MarbleMap.cpp
 ===================================================================
---- src-fremantle.orig/src/lib/MarbleMap.cpp	2011-12-04 10:51:08.000000000 +0100
-+++ src-fremantle/src/lib/MarbleMap.cpp	2011-12-04 10:51:31.000000000 +0100
-@@ -870,10 +870,9 @@
+--- src-fremantle.orig/src/lib/MarbleMap.cpp	2012-08-12 13:18:09.000000000 +0200
++++ src-fremantle/src/lib/MarbleMap.cpp	2012-08-12 16:01:20.000000000 +0200
+@@ -840,11 +838,9 @@
                      delete tileCreatorDlg;
                  }
  
 -                if ( TileLoader::baseTilesAvailable( *texture ) ) {
 -                    textures.append( texture );
 -                } else {
--                    qWarning() << "Base tiles for" << sourceDir << "not available. Skipping.";
+-                    qWarning() << "Base tiles for" << sourceDir << "not available. Skipping all texture layers.";
+-                    textureLayersOk = false;
 +                textures.append( texture );
 +                if ( !TileLoader::baseTilesAvailable( *texture ) ) {
 +                    qWarning() << "Base tiles for" << sourceDir << "not available.";

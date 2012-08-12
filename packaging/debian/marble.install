@@ -2,7 +2,6 @@ opt/marble/bin/marble
 opt/marble/bin/marble.sh
 usr/share/applications/hildon/marble.desktop
 usr/share/dbus-1/services/marble.service
-usr/share/icons/hicolor/128x128/apps/marble.png
 usr/share/icons/hicolor/64x64/apps/marble.png
 usr/share/icons/hicolor/48x48/apps/marble.png
 usr/share/icons/hicolor/26x26/apps/marble.png

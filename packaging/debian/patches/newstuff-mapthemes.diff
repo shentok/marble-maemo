@@ -1,8 +1,8 @@
 Index: src-fremantle/data/CMakeLists.txt
 ===================================================================
---- src-fremantle.orig/data/CMakeLists.txt	2012-02-19 11:51:05.000000000 +0100
-+++ src-fremantle/data/CMakeLists.txt	2012-02-19 11:55:20.000000000 +0100
-@@ -145,6 +145,113 @@
+--- src-fremantle.orig/data/CMakeLists.txt	2012-08-12 12:54:15.000000000 +0200
++++ src-fremantle/data/CMakeLists.txt	2012-08-12 12:54:20.000000000 +0200
+@@ -141,6 +141,113 @@
  DESTINATION ${MARBLE_DATA_INSTALL_PATH}/maps/earth/hillshading/0/0)
  
  install (FILES

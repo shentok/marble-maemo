@@ -1,8 +1,8 @@
-Index: marble-1.1.90/data/CMakeLists.txt
+Index: src-fremantle/data/CMakeLists.txt
 ===================================================================
---- marble-1.1.90.orig/data/CMakeLists.txt	2011-06-22 18:49:32.000000000 +0200
-+++ marble-1.1.90/data/CMakeLists.txt	2011-06-22 18:49:49.000000000 +0200
-@@ -247,6 +247,11 @@
+--- src-fremantle.orig/data/CMakeLists.txt	2012-08-12 19:36:49.000000000 +0200
++++ src-fremantle/data/CMakeLists.txt	2012-08-12 19:36:50.000000000 +0200
+@@ -252,6 +252,11 @@
      install (FILES placemarks/cityplacemarks.cache DESTINATION ${MARBLE_DATA_INSTALL_PATH}/placemarks)
  endif(MOBILE)
  
@@ -12,5 +12,5 @@ Index: marble-1.1.90/data/CMakeLists.txt
 +DESTINATION ${MARBLE_DATA_INSTALL_PATH}/lang)
 +
  if(NOT APPLE AND NOT WIN32)
-   if(QTONLY)
-     set(ICON_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/../../usr/share/icons)
+   install (FILES icons/hi64-app-marble.png DESTINATION ${ICON_INSTALL_DIR}/hicolor/64x64/apps/ RENAME marble.png)
+   install (FILES icons/hi48-app-marble.png DESTINATION ${ICON_INSTALL_DIR}/hicolor/48x48/apps/ RENAME marble.png)
