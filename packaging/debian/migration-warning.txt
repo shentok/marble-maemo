@@ -1,0 +1,3 @@
+Marble can share OpenStreetMap data with other applications on this device. This helps to save disk space and reduce network traffic.
+
+Press 'Accept' to enable sharing and migrate existing OpenStreetMap data. This can take several minutes. Alternatively you can skip this step now and data sharing will be disabled. You'll be prompted again to enable it during the next Marble version upgrade.

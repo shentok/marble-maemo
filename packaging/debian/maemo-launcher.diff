@@ -1,0 +1,24 @@
+Index: usr/share/applications/hildon/marble.desktop
+===================================================================
+--- usr/share/applications/hildon/marble.desktop	2011-06-21 18:34:08.000000000 +0200
++++ usr/share/applications/hildon/marble.desktop	2011-06-22 18:49:32.000000000 +0200
+@@ -1,7 +1,6 @@
+ [Desktop Entry]
+ Type=Application
+-TryExec=marble
+-Exec=marble
++Exec=/opt/marble/bin/marble.sh
+ Name=Marble
+ Name[ast]=Marble
+ Name[bg]=Marble
+@@ -111,5 +110,9 @@
+ GenericName[zh_TW]=桌面星象儀
+ Icon=marble
+ Terminal=false
+-Categories=Qt;KDE;Education;Geography;
++StartupWMClass=marble
++X-Window-Icon=marble
+ X-DocPath=marble/index.html
++X-HildonDesk-ShowInToolbar=true
++X-Osso-Service=org.kde.edu.marble
++X-Osso-Type=application/x-executable
