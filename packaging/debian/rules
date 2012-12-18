@@ -17,7 +17,8 @@ CMAKE = cmake -DCMAKE_INSTALL_PREFIX=$(CURDIR)/debian/tmp/opt/marble \
               -DCMAKE_BUILD_TYPE=Release \
               -DMOBILE=ON \
               -DBUILD_INHIBIT_SCREENSAVER_PLUGIN=TRUE \
-              -DICON_INSTALL_DIR:PATH=../../usr/share/icons
+              -DICON_INSTALL_DIR:PATH=../../usr/share/icons \
+              $(DEB_SRCDIR)
 
 DEB_MAKE_INSTALL_TARGET = install
 
