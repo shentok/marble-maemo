@@ -9,6 +9,7 @@ opt/marble/lib/marble/plugins/libGraticulePlugin.so
 opt/marble/lib/marble/plugins/libInhibitScreensaverPlugin.so
 opt/marble/lib/marble/plugins/libJsonPlugin.so
 opt/marble/lib/marble/plugins/libKmlPlugin.so
+opt/marble/lib/marble/plugins/libLicense.so
 opt/marble/lib/marble/plugins/libLocalOsmSearchPlugin.so
 opt/marble/lib/marble/plugins/libLocalDatabasePlugin.so
 opt/marble/lib/marble/plugins/libLogPlugin.so
