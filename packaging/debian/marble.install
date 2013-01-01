@@ -1,4 +1,4 @@
-opt/marble/bin/marble
+opt/marble/bin/marble-qt
 opt/marble/bin/marble.sh
 usr/share/applications/hildon/marble.desktop
 usr/share/dbus-1/services/marble.service
