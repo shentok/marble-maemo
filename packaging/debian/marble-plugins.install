@@ -25,7 +25,6 @@ opt/marble/lib/marble/plugins/libOverviewMap.so
 opt/marble/lib/marble/plugins/libPntPlugin.so
 opt/marble/lib/marble/plugins/libPositionMarker.so
 opt/marble/lib/marble/plugins/libProgressFloatItem.so
-opt/marble/lib/marble/plugins/libQNamNetworkPlugin.so
 opt/marble/lib/marble/plugins/libRoutingPlugin.so
 opt/marble/lib/marble/plugins/libSpeedometer.so
 opt/marble/lib/marble/plugins/libStarsPlugin.so
