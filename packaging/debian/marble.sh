@@ -18,4 +18,4 @@ export LD_LIBRARY_PATH
 PATH="/opt/marble/bin:${PATH}"
 export PATH
 
-/opt/marble/bin/marble $*
+/opt/marble/bin/marble-qt $*
