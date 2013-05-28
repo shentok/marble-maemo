@@ -2,61 +2,10 @@ Index: src-fremantle/data/CMakeLists.txt
 ===================================================================
 --- src-fremantle.orig/data/CMakeLists.txt	2012-08-12 12:54:15.000000000 +0200
 +++ src-fremantle/data/CMakeLists.txt	2012-08-12 12:54:20.000000000 +0200
-@@ -141,6 +141,113 @@
+@@ -141,6 +141,62 @@
  DESTINATION ${MARBLE_DATA_INSTALL_PATH}/maps/earth/hillshading/0/0)
  
  install (FILES
-+maps/earth/osmarender/osmarender.dgml
-+maps/earth/osmarender/osmarender-preview.png
-+maps/earth/osmarender/legend.html
-+DESTINATION ${MARBLE_DATA_INSTALL_PATH}/maps/earth/osmarender)
-+
-+install (FILES
-+maps/earth/osmarender/legend/airportapron.png
-+maps/earth/osmarender/legend/airportrunway.png
-+maps/earth/osmarender/legend/allotments.png
-+maps/earth/osmarender/legend/boundary.png
-+maps/earth/osmarender/legend/bridge.png
-+maps/earth/osmarender/legend/bridleway.png
-+maps/earth/osmarender/legend/byway.png
-+maps/earth/osmarender/legend/cemetery.png
-+maps/earth/osmarender/legend/commercial.png
-+maps/earth/osmarender/legend/cycleway.png
-+maps/earth/osmarender/legend/farm.png
-+maps/earth/osmarender/legend/footway.png
-+maps/earth/osmarender/legend/golfcourse.png
-+maps/earth/osmarender/legend/meadow.png
-+maps/earth/osmarender/legend/military.png
-+maps/earth/osmarender/legend/motorway.png
-+maps/earth/osmarender/legend/nationalreserve.png
-+maps/earth/osmarender/legend/naturereserve.png
-+maps/earth/osmarender/legend/pathway.png
-+maps/earth/osmarender/legend/primaryroad.png
-+maps/earth/osmarender/legend/quarry.png
-+maps/earth/osmarender/legend/railway.png
-+maps/earth/osmarender/legend/railwaystation.png
-+maps/earth/osmarender/legend/retail.png
-+maps/earth/osmarender/legend/secondaryroad.png
-+maps/earth/osmarender/legend/significantbuilding.png
-+maps/earth/osmarender/legend/sportcentre.png
-+maps/earth/osmarender/legend/sportpitch.png
-+maps/earth/osmarender/legend/station.png
-+maps/earth/osmarender/legend/subway.png
-+maps/earth/osmarender/legend/summitpeak.png
-+maps/earth/osmarender/legend/track.png
-+maps/earth/osmarender/legend/tram.png
-+maps/earth/osmarender/legend/trunkroad.png
-+maps/earth/osmarender/legend/tunnel.png
-+maps/earth/osmarender/legend/unclassifiedroad.png
-+maps/earth/osmarender/legend/unsurfacedroad.png
-+maps/earth/osmarender/legend/wood.png
-+DESTINATION ${MARBLE_DATA_INSTALL_PATH}/maps/earth/osmarender/legend)
-+
-+install (FILES
-+maps/earth/osmarender/0/0/0.png
-+DESTINATION ${MARBLE_DATA_INSTALL_PATH}/maps/earth/osmarender/0/0)
-+
-+install (FILES
 +maps/earth/public-transport/public-transport.png
 +maps/earth/public-transport/legend.html
 +maps/earth/public-transport/public-transport.dgml
