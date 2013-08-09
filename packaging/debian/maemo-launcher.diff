@@ -6,8 +6,8 @@ Index: usr/share/applications/hildon/marble.desktop
  [Desktop Entry]
  Type=Application
 -TryExec=marble
--Exec=marble
-+Exec=/opt/marble/bin/marble.sh
+-Exec=marble %F
++Exec=/opt/marble/bin/marble.sh %F
  Name=Marble
  Name[ast]=Marble
  Name[bg]=Marble
