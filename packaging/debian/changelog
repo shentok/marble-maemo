@@ -1,3 +1,9 @@
+marble (1.5.5-1) fremantle; urgency=low
+
+  * New upstream version.
+
+ -- Bernhard Beschow <bbeschow@cs.tu-berlin.de>  Sun,  1 Sep 2013 19:28:47 +0200
+
 marble (1.1.0) fremantle; urgency=low
 
   * New upstream version.
