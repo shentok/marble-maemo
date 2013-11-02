@@ -17,6 +17,7 @@ CMAKE = cmake -DCMAKE_INSTALL_PREFIX=$(CURDIR)/debian/tmp/opt/marble \
               -DCMAKE_BUILD_TYPE=Release \
               -DMOBILE=ON \
               -DBUILD_INHIBIT_SCREENSAVER_PLUGIN=TRUE \
+              -DWITH_DESIGNER_PLUGIN=FALSE \
               -DICON_INSTALL_DIR=$(CURDIR)/debian/tmp/usr/share/icons \
               -DAPPS_INSTALL_DIR=$(CURDIR)/debian/tmp/usr/share/applications/hildon \
               $(DEB_SRCDIR)
