@@ -88,6 +88,7 @@ common-install-arch::
 	install -D -m u+rw-x,g+r-wx,o+r-wx $(CURDIR)/debian/marble.service $(CURDIR)/debian/tmp/usr/share/dbus-1/services/marble.service
 	install -D -m u+rw-x,g+r-wx,o+r-wx $(CURDIR)/debian/migration-warning.txt $(CURDIR)/debian/tmp/opt/marble/share/marble/data/migration-warning.txt
 	patch -p0 -d $(DEB_DH_INSTALL_SOURCEDIR) < $(CURDIR)/debian/maemo-launcher.diff
+	mv $(CURDIR)/debian/tmp/usr/share/applications/hildon/marble-mobile.desktop $(CURDIR)/debian/tmp/usr/share/applications/hildon/marble.desktop
 
 common-binary-post-install-indep::
 	rm -f $(CURDIR)/debian/marble-data/usr/share/marble/data/LICENSE.txt
